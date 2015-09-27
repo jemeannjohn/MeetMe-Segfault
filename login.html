@@ -1,5 +1,5 @@
 <head>
-    <title>Todoss List</title>
+    <title>MeetMe</title>
 </head>
 
 <body>
@@ -25,11 +25,7 @@
 </script>
 <div class="container">
     <header>
-        <h1>Todo List ({{incompleteCount}})</h1>
-        <label class="hide-completed">
-            <input type="checkbox" checked="{{hideCompleted}}"/>
-            Hide Completed Tasks
-        </label>
+        <h1>MeetMe</h1>
         {{> loginButtons}}
         {{#if currentUser}}
             <form class="new-task">
@@ -43,12 +39,6 @@
             {{> task}}
         {{/each}}
     </ul>
-    <div
-            class="fb-like"
-            data-share="true"
-            data-width="450"
-            data-show-faces="true">
-    </div>
 </div>
 
 </body>
