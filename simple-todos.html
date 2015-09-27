@@ -1,0 +1,64 @@
+<head>
+    <title>Todoss List</title>
+</head>
+
+<body>
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '1649636661954920',
+            xfbml: true,
+            version: 'v2.4'
+        });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<div class="container">
+    <header>
+        <h1>Todo List ({{incompleteCount}})</h1>
+        <label class="hide-completed">
+            <input type="checkbox" checked="{{hideCompleted}}"/>
+            Hide Completed Tasks
+        </label>
+        {{> loginButtons}}
+        {{#if currentUser}}
+            <form class="new-task">
+                <input type="text" name="text" placeholder="Type to add new tasks"/>
+            </form>
+        {{/if}}
+    </header>
+
+    <ul>
+        {{#each tasks}}
+            {{> task}}
+        {{/each}}
+    </ul>
+    <div
+            class="fb-like"
+            data-share="true"
+            data-width="450"
+            data-show-faces="true">
+    </div>
+</div>
+
+</body>
+
+<template name="task">
+    <li class="{{#if checked}}checked{{/if}}">
+        <button class="delete">&times;</button>
+
+        <input type="checkbox" checked="{{checked}}" class="toggle-checked"/>
+
+        <span class="text"><strong>{{username}}</strong> - {{text}}</span>
+    </li>
+</template>
