@@ -1,8 +1,13 @@
+<!--
+Credit: http://html5up.net/twenty
+Published under Creative Commons License 3.0
+-->
+
 <head>
     <title>MeetMe</title>
 </head>
 
-<body>
+<body class="index">
 <script>
     window.fbAsyncInit = function () {
         FB.init({
@@ -23,32 +28,75 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-<div class="container">
-    <header>
-        <h1>MeetMe</h1>
-        {{> loginButtons}}
-        {{#if currentUser}}
-            <form class="new-task">
-                <input type="text" name="text" placeholder="Type to add new tasks"/>
-            </form>
-        {{/if}}
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header" class="alt">
+        <h1 id="logo"><a href="index.html">MeetMe <span>by SegFault!</span></a></h1>
+        <nav id="nav">
+            <ul>
+                <li><a href="#" class="button special">
+                    {{> loginButtons}}
+                    {{#if currentUser}}
+                        <!--<form class="new-task">
+                            <input type="text" name="text" placeholder="Type to add new tasks"/>
+                        </form>-->
+                    {{/if}}</a></li>
+                <li class="current"><a href="index.html">Welcome</a></li>
+
+            </ul>
+        </nav>
     </header>
 
-    <ul>
-        {{#each tasks}}
-            {{> task}}
-        {{/each}}
-    </ul>
+    <!-- Banner -->
+    <section id="banner">
+        <div class="inner">
+
+            <header>
+                <h2>MEETME</h2>
+            </header>
+            <p>This is <strong>MeetMe</strong>, a collaborative
+                <br />
+                meeting planner
+                <br />
+                by <a href="https://github.com/ser515asu/MeetMe-Segfault">SEGFAULT</a>.</p>
+            <footer>
+                <ul class="buttons vertical">
+                    <li><a href="#" class="button fit scrolly">Tell Me More</a></li>
+                </ul>
+            </footer>
+
+        </div>
+
+    </section>
+    <!-- Footer -->
+    <footer id="footer">
+
+        <ul class="icons">
+            <li><a href="#" class="icon circle fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon circle fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon circle fa-google-plus"><span class="label">Google+</span></a></li>
+            <li><a href="#" class="icon circle fa-github"><span class="label">Github</span></a></li>
+            <li><a href="#" class="icon circle fa-dribbble"><span class="label">Dribbble</span></a></li>
+        </ul>
+
+        <ul class="copyright">
+            <li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+
+    </footer>
+
 </div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+
+<script src="assets/js/main.js"></script>
 
 </body>
 
-<template name="task">
-    <li class="{{#if checked}}checked{{/if}}">
-        <button class="delete">&times;</button>
-
-        <input type="checkbox" checked="{{checked}}" class="toggle-checked"/>
-
-        <span class="text"><strong>{{username}}</strong> - {{text}}</span>
-    </li>
-</template>
