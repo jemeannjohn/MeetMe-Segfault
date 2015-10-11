@@ -1,0 +1,79 @@
+<head>
+    <title>WELCOME TO MEETME</title>
+</head>
+<template name="calendar">
+
+
+    <body>
+    <div class="container">
+        <div>
+            <label for="meeting_title">Title :</label>
+
+            <p>
+                <input type="text" id="meeting_title" name="meeting_title" value=""><br>
+            </p>
+        </div>
+        <div>
+            <label for="description">Agenda: </label>
+
+            <p>
+                <textarea id="description" rows="2" cols="30" name="meeting_description">Enter description here...</textarea>
+            </p>
+        </div>
+        <div>
+            <label>Location: </label>
+
+            <p>
+                <input type="text" name="location" value=""><br>
+
+            </p>
+        </div>
+        <div>
+            <label>Meeting Date: </label>
+
+            <p>
+                <input type="text" id="datepicker" name="location" value=""><br>
+                <script>
+                    $(function() {
+                        $("#datepicker").datepicker();
+                        $("#datepicker").datepicker("setDate", new Date);
+                    });
+
+
+                </script>
+            </p>
+
+        </div>
+        <div>
+            <div id="list">
+
+                <g:each in="${guestList}" var="guest" status="i">
+                    <!-- list item -->
+                    <div class="list-item">
+                        <input type="text" name="guests[${i}].name" value="${guest.name}"/>
+                        <!-- remove link -->
+                        <a href="#" class="list-remove">Remove</a>
+                    </div>
+                </g:each>
+
+                <!-- add link -->
+                <a href="#" class="list-add">Add</a>
+            </div>
+            <input type="submit"/>
+
+
+            <script>
+            $(document).ready(function() {
+                $("#list").dynamiclist();
+            });
+
+
+            </script>
+        </div>
+    </div>
+    <!--<link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/ui-darkness/jquery-ui.min.css" rel="stylesheet">-->
+    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+    <!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>-->
+    <script src="/jquery.dynamiclist.js"></script>
+    </body>
+</template>
