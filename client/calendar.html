@@ -2,78 +2,115 @@
     <title>WELCOME TO MEETME</title>
 </head>
 <template name="calendar">
-
-
     <body>
-    <div class="container">
-        <div>
-            <label for="meeting_title">Title :</label>
+    <style>
+        .schedule_meeting > tr > td {
+        padding-bottom: 1em;
+        }
+    </style>
+    <div class="container" style="margin-top: 50px; padding: 30px; background: #DDD;border: 3px #CCC solid">
+        <table style="width:50%" class="schedule_meeting">
+            <tr>
+                <td><label for="meeting_title">Title :</label>
+                </td>
+                <td>
+                    <input type="text" id="meeting_title" name="meeting_title" style="width:80%" value=""><br>
 
-            <p>
-                <input type="text" id="meeting_title" name="meeting_title" value=""><br>
-            </p>
-        </div>
-        <div>
-            <label for="description">Agenda: </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="description">Agenda: </label></td>
+                <td>
+                    <textarea id="description" rows="5" cols="30" style="width:80%" name="meeting_description"
+                              placeholder="Enter description here"></textarea>
 
-            <p>
-                <textarea id="description" rows="2" cols="30" name="meeting_description">Enter description here...</textarea>
-            </p>
-        </div>
-        <div>
-            <label>Location: </label>
+                </td>
 
-            <p>
-                <input type="text" name="location" value=""><br>
+            </tr>
+            <tr>
+                <td>
+                    <label>Location: </label>
+                </td>
+                <td>
+                    <input type="text" id="location" name="location" style="width:80%" value=""><br>
 
-            </p>
-        </div>
-        <div>
-            <label>Meeting Date: </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Meeting Date: </label>
 
-            <p>
-                <input type="text" id="datepicker" name="location" value=""><br>
-                <script>
-                    $(function() {
-                        $("#datepicker").datepicker();
-                        $("#datepicker").datepicker("setDate", new Date);
-                    });
+                </td>
+                <td>
+                    <input type="text" id="datepicker" style="width:80%" class="date_picker" data-provide="datepicker" name="location"
+                           value="">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Participants:</label>
+                </td>
+                <td>
+                    <div id="list">
 
+                        <g:each in="${guestList}" var="guest" status="i">
+                            <div class="list-item">
+                                <input id="tags" class="tag" type="text" name="guests[${i}].name" style="width:80%" value=""/>
+                                <a href="#" class="list-remove glyphicon glyphicon-minus-sign" style="font-size:15px"></a>
 
-                </script>
-            </p>
+                                <div style="height: 5px;"></div>
+                            </div>
+                        </g:each>
 
-        </div>
-        <div>
-            <div id="list">
-
-                <g:each in="${guestList}" var="guest" status="i">
-                    <!-- list item -->
-                    <div class="list-item">
-                        <input type="text" name="guests[${i}].name" value="${guest.name}"/>
-                        <!-- remove link -->
-                        <a href="#" class="list-remove">Remove</a>
+                        <a href="#" class="list-add glyphicon glyphicon-plus-sign" style="font-size:20px"></a>
                     </div>
-                </g:each>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Duration:</label>
+                </td>
+                <td>
+                    <div id="duration">
+                    <input type="text" id="duration_text" style="width:15%" name="duration">
+                    <select clas="icon-time" style="width:7%">
+                        <option value="hours">Hrs</option>
+                        <option value="minutes">Mins</option>
+                    </select>
+                          </div>
 
-                <!-- add link -->
-                <a href="#" class="list-add">Add</a>
-            </div>
-            <input type="submit"/>
+    </td>
+    </tr>
 
 
-            <script>
-            $(document).ready(function() {
+    <input type="submit" onClick=clicked();" id="slot_submit" class="btn btn-info btn-large"/>
+
+    </table>
+    </div>
+    <link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/ui-darkness/jquery-ui.min.css"
+          rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+
+    <script src="jquery.dynamiclist.js"></script>
+    <!--<script src="calendar.js"></script>-->
+
+    <script>
+            $(document).ready(function () {
                 $("#list").dynamiclist();
+                $(".date_picker").datepicker({
+                    format: 'mm/dd/yyyy',
+                    startDate: '-3d'
+                });
+            });
+            var availableTags = ["jemejohn91@gmail.com", "jajohn@asu.edu"];
+            $( "#tags" ).autocomplete({
+                  source: availableTags
             });
 
 
-            </script>
-        </div>
-    </div>
-    <!--<link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/ui-darkness/jquery-ui.min.css" rel="stylesheet">-->
-    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
-    <!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>-->
-    <script src="/jquery.dynamiclist.js"></script>
+    </script>
+    <script src="calendar.js"></script>
     </body>
 </template>
