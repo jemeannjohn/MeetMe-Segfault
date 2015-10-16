@@ -3,24 +3,20 @@ console.log("coming to calendar.j");
 if (Meteor.isClient) {
     console.log("coming to isClient...");
     Template.calendar.events({
-        "submit #slot_submit": function (event) {
-            // Prevent default browser form submit
-            console.log("coming in event");
+        "click #slot_submit": function (event) {
+
             event.preventDefault();
-            var title = document.getElementById('title').value();
-            var description = document.getElementById('description').value();
-            var location = document.getElementById('location').value();
-            var meeting_date = document.getElementById('datepicker').value();
-            var duration = document.getElementById('duration').value();
+            var title = $('#meeting_title').val();
+            var description = $('#description').val();
+            var location = $('#location').val();
+            var meeting_date = $('#datepicker').val();
+            var duration = $('#duration').val();
             var array = new Array();
-            $(".tag").each(function () {
-                array.push(this.value())
+            $(".tag").each(function (k, v) {
+                array.push(v.value)
             })
-            console.log(array);
+            $("#slot_table_div").css({ visibility: "visible"});
         }
     });
-//
-//    function clicked(event){
-//    alert("coming here");
-//    }
+
 }
