@@ -20,6 +20,13 @@ if (Meteor.isClient) {
 
             // Clear form
             event.target.text.value = "";
+        },
+
+        //changes for deleting the user account
+        'click #delete': function (e) {
+            e.preventDefault();
+            Meteor.users.remove({_id: Meteor.userId()});
+            Meteor.logout();
         }
     });
     Template.task.events({
