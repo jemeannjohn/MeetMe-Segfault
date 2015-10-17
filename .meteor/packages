@@ -22,8 +22,6 @@ accounts-password
 accounts-facebook
 meteorhacks:kadira
 accounts-google
-<<<<<<< HEAD
-=======
 iron:router
 ejson
 mrt:jquery-ui
@@ -31,4 +29,3 @@ twbs:bootstrap
 aldeed:tabular
 useraccounts:semantic-ui
 useraccounts:core
->>>>>>> refs/remotes/origin/profilepage
