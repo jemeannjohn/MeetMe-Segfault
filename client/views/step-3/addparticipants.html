@@ -1,0 +1,41 @@
+<template name="addparticipants">
+    <div id="step-3">
+        <h2 class="StepTitle">Add participants</h2>
+    <form class="form-horizontal form-label-left">
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                   for="first-name">Participants <span class="required">*</span>
+            </label>
+
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="control-group" id="fields">
+                            <div class="mycontrols">
+                                <form role="form" autocomplete="off">
+                                    <div class="entry input-group col-xs-12">
+                                        <input class="form-control" name="fields[]" type="text" placeholder="Email Addresses" />
+                    	<span class="input-group-btn">
+                            <button class="btn btn-success btn-add" id="add_button" type="button">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </span>
+                                    </div>
+                                </form>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+        <p> Something Going wrong here</p>
+        <p> Can't add participants</p>
+        <p>TODO: Use autoforms or other form packages for meteor so we dont have to worry
+            about seeting the JS part</p>
+        <!--TODO: Use autoforms or other form packages for meteor so we dont have to worry
+        about seeting the JS part-->
+    </div>
+</template>
