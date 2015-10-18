@@ -51,15 +51,11 @@
                         <a href="#page-top"></a>
                     </li>
                     <li><a href="#" class="button special">
-                        {{> loginButtons}}
+                        {{> loginButtons align = "right"}}
                     </a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">About</a>
-                    </li>
-
-                    <li>
-                        <a href="/profile">Profile</a>
+                    {{#if currentUser}}<a href="/profile">Profile</a>{{/if}}
                        <!--Placeholder-->
                     </li>
 
@@ -92,7 +88,6 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>About MEETME</h2>
                     <p>The intelligent meeting planner you have been waiting for.</p>
-                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
                 </div>
             </div>
         </div>
