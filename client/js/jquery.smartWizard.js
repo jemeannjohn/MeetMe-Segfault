@@ -23,7 +23,7 @@ function SmartWizard(target, options) {
     this.buttons = {
         next : $('<a>'+options.labelNext+'</a>').attr("href","#").addClass("btn btn-success"),
         previous : $('<a>'+options.labelPrevious+'</a>').attr("href","#").addClass("btn btn-primary"),
-        finish  : $('<a>'+options.labelFinish+'</a>').attr("href","#").addClass("btn btn-default")
+        finish  : $('<a>'+options.labelFinish+'</a>').attr("href","/success").addClass("btn btn-default")
     };
 
     /*
@@ -92,12 +92,26 @@ function SmartWizard(target, options) {
             return false;
         });
         $($this.buttons.finish).click(function() {
+
             if(!$(this).hasClass('buttonDisabled')){
+                console.log('Nitesh is here inside function this.button.finish');
+
+                list = ['niteshthali08@gmail.com']
+                Meteor.call('sendEmail',
+                    list,
+                    "no-reply@meetme.com",
+                    "MeetMe - New Meeting Request!",
+                    "You have a new meeting request. Please find the details below!");
+
+
                 if($.isFunction($this.options.onFinish)) {
                     var context = { fromStep: $this.curStepIdx + 1 };
                     if(!$this.options.onFinish.call(this,$($this.steps), context)){
                         return false;
+
                     }
+
+
                 }else{
                     var frm = $this.target.parents('form');
                     if(frm && frm.length){
@@ -105,7 +119,7 @@ function SmartWizard(target, options) {
                     }
                 }
             }
-            return false;
+
         });
 
         $($this.steps).bind("click", function(e){

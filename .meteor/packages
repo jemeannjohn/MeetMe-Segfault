@@ -29,3 +29,5 @@ twbs:bootstrap
 aldeed:tabular
 useraccounts:semantic-ui
 useraccounts:core
+email
+meteorhacks:ssr
