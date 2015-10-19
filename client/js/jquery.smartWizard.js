@@ -91,23 +91,42 @@ function SmartWizard(target, options) {
             $this.goBackward();
             return false;
         });
+        function send_email()
+        {
+            list = ['niteshthali08@gmail.com']
+            console.log('inside send email function');
+            Meteor.call('sendEmail',
+                list,
+                "no-reply@meetme.com",
+                "MeetMe - New Meeting Request!",
+                "You have a new meeting request. Please find the details below!");
+
+        }
+        function meeting_alert()
+        {
+            if (confirm("Are you want to schedule a meeting ?") == true) {
+                console.log('You clicked ok')
+                return true
+            } else {
+                console.log('You clicked cancel')
+                return false
+            }
+        }
         $($this.buttons.finish).click(function() {
 
             if(!$(this).hasClass('buttonDisabled')){
-                console.log('Nitesh is here inside function this.button.finish');
-
-                list = ['niteshthali08@gmail.com']
-                Meteor.call('sendEmail',
-                    list,
-                    "no-reply@meetme.com",
-                    "MeetMe - New Meeting Request!",
-                    "You have a new meeting request. Please find the details below!");
-
+                // console.log('Nitesh is here inside function this.button.finish');
+                r = meeting_alert();
+                console.log('r is:', r);
+                if (r)
+                    send_email();
 
                 if($.isFunction($this.options.onFinish)) {
                     var context = { fromStep: $this.curStepIdx + 1 };
+                    //console.log('returning false1')
                     if(!$this.options.onFinish.call(this,$($this.steps), context)){
-                        return false;
+                        console.log('returning false')
+                        return r;
 
                     }
 
@@ -115,7 +134,13 @@ function SmartWizard(target, options) {
                 }else{
                     var frm = $this.target.parents('form');
                     if(frm && frm.length){
+                        //console.log('returning submit')
                         frm.submit();
+
+                    }
+                    else
+                    {
+                        return r;
                     }
                 }
             }
