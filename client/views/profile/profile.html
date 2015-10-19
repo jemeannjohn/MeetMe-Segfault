@@ -2,7 +2,6 @@
     <title>
         something
     </title>
-
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome.min.css" rel="stylesheet">
     <link href="/stylesheets/animate.min.css" rel="stylesheet">
@@ -10,8 +9,6 @@
     <link href="/stylesheets/custom.css" rel="stylesheet">
     <!--<link href="login_theme/icheck/flat/green.login_theme" rel="stylesheet" />-->
     <script src="jquery.min.js"></script>
-
-
 </head>
 <template name="profile">
     <body class="nav-md">
@@ -22,20 +19,26 @@
                     <div class="left_col scroll-view">
 
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="index.html" class="site_title"><span>MeetMe SegFault!</span></a>
+                            <a href="/" class="site_title"><span>MeetMe SegFault!</span></a>
                         </div>
                         <div class="clearfix"></div>
 
                         <div class="profile_pic">
+                            {{#if currentUser}}
+                                <img src="{{currentUser.services.google.picture}}" alt="..." class="img-circle profile_img">
+                            {{else}}
                             <img src="https://app-images-production.s3.amazonaws.com/uploads/user/avatar/1568/identicon.png" alt="..." class="img-circle profile_img">
-                        </div>
+                            {{/if}}
+                            </div>
                         <div class="profile_info">
                             <span>Welcome,</span>
-
-                            <h2>Tharun Niranjan</h2>
+                            {{#if currentUser}}
+                            <h2>{{currentUser.profile.name}}</h2>
+                            {{else}}
+                                <h2>Guest</h2>
+                            {{/if}}
                         </div>
                     </div>
-                    <!-- /menu prile quick info -->
 
                     <br/>
                     <br/>
@@ -47,7 +50,7 @@
                             <br/>
 
                             <ul class="nav side-menu">
-                                <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                                <!--<li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
                                         <li><a href="index.html">Dashboard</a>
                                         </li>
@@ -56,7 +59,7 @@
                                         <li><a href="index3.html">Dashboard3</a>
                                         </li>
                                     </ul>
-                                </li>
+                                </li>-->
 
                             </ul>
                         </div>
@@ -70,29 +73,30 @@
                         <div class="nav toggle">
                             <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                         </div>
-
+                        {{> loginButtons}}
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
-                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
-                                   aria-expanded="false">
-                                    <img src="https://app-images-production.s3.amazonaws.com/uploads/user/avatar/1568/identicon.png" alt="">Tharun
-                                    <span class=" fa fa-angle-down"></span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                    <li><a href="javascript:;"> Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">
-                                            <span class="badge bg-red pull-right">50%</span>
-                                            <span>Settings</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">Help</a>
-                                    </li>
-                                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
-                                    </li>
-                                </ul>
+
+                                <!--<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"-->
+                                   <!--aria-expanded="false">-->
+                                    <!--<img src="https://app-images-production.s3.amazonaws.com/uploads/user/avatar/1568/identicon.png" alt="">Tharun-->
+                                    <!--<span class=" fa fa-angle-down"></span>-->
+                                <!--</a>-->
+                                <!--<ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">-->
+                                    <!--<li><a href="javascript:;"> Profile</a>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<a href="javascript:;">-->
+                                            <!--<span class="badge bg-red pull-right">50%</span>-->
+                                            <!--<span>Settings</span>-->
+                                        <!--</a>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<a href="javascript:;">Help</a>-->
+                                    <!--</li>-->
+                                    <!--<li><a href="/"><i class="fa fa-sign-out pull-right"></i> Log Out</a>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
                             </li>
                         </ul>
                     </nav>
