@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>New Meeting Request - MeetMe</title>
+    <link href="styles.css" media="all" rel="stylesheet" type="text/css" />
+</head>
+
+<body itemscope itemtype="http://schema.org/EmailMessage">
+<p>You have a new meeting request. Please find the details below! </p>
+<table>
+    <tr>
+        <td></td>
+        <td width="600">
+            <table width="100%" style="border: 1px solid #eee;">
+                <tr>
+                    <th style="text-align: left; padding: 10px; border-bottom: 1px solid #eee; border-right: 1px solid #eee;">Title</th>
+                    <td style="text-align: left; padding: 10px; border-bottom: 1px solid #eee;">{{topic}}</td>
+                </tr>
+                <tr>
+                    <th style="text-align: left; padding: 10px; border-bottom: 1px solid #eee; border-right: 1px solid #eee;">Location</th>
+                    <td style="text-align: left; padding: 10px; border-bottom: 1px solid #eee;">{{location}}</td>
+                </tr>
+                <tr>
+                    <th style="text-align: left; padding: 10px; border-right: 1px solid #eee;">Time</th>
+                    <td style="text-align: left; padding: 10px;">{{time}}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<hr>
+<br>
+<div>
+    <!--
+<button style="background-color: green; height: 50px;width: 50px; border: 1px solid #000;">Accept</button>&nbsp;&nbsp;
+<button style="background-color: darkred; height: 50px;width: 50px; border: 1px solid #000;">>Reject</button>&nbsp;&nbsp;
+<button style="background-color: yellow; height: 50px;width: 50px; border: 1px solid #000;">>Reject with Reply</button>
+-->
+    <button>Accept</button>&nbsp;&nbsp;
+    <button>Reject</button>&nbsp;&nbsp;
+    <button>Reject with Reply</button>
+
+</div>
+</body>
+</html>
