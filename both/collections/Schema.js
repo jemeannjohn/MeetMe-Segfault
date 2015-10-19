@@ -13,3 +13,29 @@ Schemas.Person = new SimpleSchema({
         unique: true
     }
 });
+
+Schemas.myDate = new SimpleSchema({
+    date: {
+        type: Date,
+        autoform: {
+            type: "bootstrap-datepicker",
+            datePickerOptions: {
+                multidate: true,
+                autoclose: true}
+        }
+    }
+
+});
+Schemas.Date = new SimpleSchema(
+{
+    typeTest: {
+        type: String,
+            optional: true,
+            autoform: {
+            afFieldInput: {
+                type: "bootstrap-datetimepicker"
+            }
+        }
+    }
+
+});

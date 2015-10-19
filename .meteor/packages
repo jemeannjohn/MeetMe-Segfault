@@ -35,3 +35,7 @@ aldeed:collection2
 msavin:mongol
 insecure
 aldeed:delete-button
+rajit:bootstrap3-datepicker
+aldeed:autoform-bs-datepicker
+tsega:bootstrap3-datetimepicker@=3.1.3_3
+mrt:moment-timezone

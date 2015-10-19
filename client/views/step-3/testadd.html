@@ -5,7 +5,7 @@
                 <div class="panel-body">
                     {{#autoForm id="afInsertDemo" type="insert" collection=Collections.People}}
                         <div class="form-group {{#if afFieldIsInvalid name='firstName'}}has-error{{/if}}">
-                            <label class="control-label">{{afFieldLabelText name='firstName'}}</label>
+                            <label class="control-label">{{afFieldLabelText name='Email'}}</label>
                             {{> afFieldInput name='firstName'}}
                             {{#if afFieldIsInvalid name='firstName'}}
                                 <span class="help-block">{{{afFieldMessage name='firstName'}}}</span>
