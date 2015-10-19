@@ -104,7 +104,7 @@ function SmartWizard(target, options) {
         }
         function meeting_alert()
         {
-            if (confirm("Are you want to schedule a meeting ?") == true) {
+            if (confirm("Are you sure to schedule a meeting?") == true) {
                 console.log('You clicked ok')
                 return true
             } else {
