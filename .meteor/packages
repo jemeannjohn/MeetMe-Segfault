@@ -33,3 +33,5 @@ meteorhacks:ssr
 aldeed:autoform
 aldeed:collection2
 msavin:mongol
+insecure
+aldeed:delete-button
