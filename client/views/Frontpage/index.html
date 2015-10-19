@@ -1,114 +1,94 @@
 <template name="frontpage">
-<head>
+    <head>
+        <title>MeetMe</title>
+    </head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <body class="index">
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '769609646397592',
+                xfbml: true,
+                version: 'v2.4'
+            });
+        };
 
-    <title>Grayscale - Start Bootstrap Theme</title>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div id="page-wrapper">
 
-    <!-- Bootstrap Core CSS -->
-    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="/stylesheets/grayscale.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
-                    <i class="fa fa-play-circle"></i>  <span class="light">SEGFAULT</span>
-                </a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
+        <!-- Header -->
+        <header id="header" class="alt">
+            <nav id="nav">
+                <ul>
                     <li><a href="#" class="button special">
-                        {{> loginButtons align = "right"}}
-                    </a>
-                    </li>
-                    <li>
-                    <!--{{#if currentUser}}<a href="/profile">Profile</a>{{/if}}-->
-                        <a href="/profile">Profile</a>
-                       <!--Placeholder-->
-                    </li>
+                        {{> loginButtons}}
+                        {{#if currentUser}}
+                            <!--<form class="new-task">
+                                <input type="text" name="text" placeholder="Type to add new tasks"/>
+                            </form>-->
+                        {{/if}}</a></li>
+                    <li class="current"><a href="/profile">Create a meeting</a></li>
 
                 </ul>
+            </nav>
+        </header>
+
+        <!-- Banner -->
+        <section id="banner">
+            <div class="inner">
+
+                <header>
+                    <h2>MEETME</h2>
+                </header>
+                <p>This is <strong>MeetMe</strong>, a collaborative
+                    <br />
+                    meeting planner
+                    <br />
+                    by <a href="https://github.com/ser515asu/MeetMe-Segfault">SEGFAULT</a>.</p>
+                    <ul class="buttons vertical">
+                        <li><a href="/profile" class="button fit scrolly">Create a meeting now!</a></li>
+                    </ul>
             </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
 
-    <!-- Intro Header -->
-    <header class="intro">
-        <div class="intro-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">MEETME</h1>
-                        <p class="intro-text">Intelligent Meeting Planner<br>Created by SegFault!</p>
-                        <a href="" class="btn btn-circle page-scroll">
-                            <i class="fa fa-angle-double-down animated"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+        </section>
+        <!-- Footer -->
+        <footer id="footer">
 
-        <div class="download-section">
-            <div class="container">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <h2>About MEETME</h2>
-                    <p>The intelligent meeting planner you have been waiting for.</p>
-                </div>
-            </div>
-        </div>
+            <ul class="icons">
+                <li><a href="#" class="icon circle fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="#" class="icon circle fa-facebook"><span class="label">Facebook</span></a></li>
+                <li><a href="#" class="icon circle fa-google-plus"><span class="label">Google+</span></a></li>
+                <li><a href="https://github.com/ser515asu/MeetMe-Segfault" class="icon circle fa-github"><span class="label">Github</span></a></li>
+            </ul>
+
+            <ul class="copyright">
+                <li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+
+    <script src="assets/js/main.js"></script>
+
+    </body>
 
 
-
-    <!-- jQuery -->
-    <script src="/js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/js/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="/js/jquery.easing.min.js"></script>
-
-    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="/js/grayscale.js"></script>
-
-</body>
 </template>
