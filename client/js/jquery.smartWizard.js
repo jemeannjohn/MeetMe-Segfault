@@ -94,7 +94,7 @@ function SmartWizard(target, options) {
         function send_email()
         {
             list = ['niteshthali08@gmail.com']
-            console.log('inside send email function');
+            //console.log('inside send email function');
             Meteor.call('sendEmail',
                 list,
                 "no-reply@meetme.com",
@@ -117,7 +117,7 @@ function SmartWizard(target, options) {
             if(!$(this).hasClass('buttonDisabled')){
                 // console.log('Nitesh is here inside function this.button.finish');
                 r = meeting_alert();
-                console.log('r is:', r);
+                //console.log('r is:', r);
                 if (r)
                     send_email();
 
@@ -125,7 +125,7 @@ function SmartWizard(target, options) {
                     var context = { fromStep: $this.curStepIdx + 1 };
                     //console.log('returning false1')
                     if(!$this.options.onFinish.call(this,$($this.steps), context)){
-                        console.log('returning false')
+                        //console.log('returning false')
                         return r;
 
                     }
