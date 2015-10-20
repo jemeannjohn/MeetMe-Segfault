@@ -39,3 +39,39 @@ Schemas.Date = new SimpleSchema(
     }
 
 });
+
+Schemas.Meeting = new SimpleSchema({
+        title: {
+            type: String,
+            index: 1,
+            unique: true
+        },
+        description: {
+            type: String,
+            index: 1,
+            max: 2000,
+            autoform: {
+                rows: 5
+            }
+        },
+        date: {
+        type: Date,
+        autoform: {
+            type: "bootstrap-datepicker",
+            datePickerOptions: {
+                multidate: true,
+                autoclose: true}
+        }
+        },
+        participants: {
+            type: Array,
+            optional: true
+        },
+        'participants.$': {
+            type: Object
+        },
+        'participants.$.email': {
+            type: String
+        },
+
+});

@@ -1,7 +1,8 @@
 <template name="addparticipants">
     <div id="step-3">
         <h2 class="StepTitle">Add participants</h2>
-    <form class="form-horizontal form-label-left">
+        {{> quickForm id="dateForm" schema=Schemas.Meeting fields="participants,participants.$.email" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-6"}}
+        <!--<form class="form-horizontal form-label-left">
 
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12"
@@ -10,7 +11,7 @@
 
             <div class="col-md-6 col-sm-6 col-xs-12">
                 {{>insertaf}}
-                <!--<div class="container">
+                &lt;!&ndash;<div class="container">
                     <div class="row">
                         <div class="control-group" id="fields">
                             <div class="mycontrols">
@@ -28,9 +29,9 @@
                             </div>
                         </div>
                     </div>
-                </div>-->
+                </div>&ndash;&gt;
             </div>
         </div>
-    </form>
+    </form>-->
     </div>
 </template>
