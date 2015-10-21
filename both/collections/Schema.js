@@ -71,7 +71,8 @@ Schemas.Meeting = new SimpleSchema({
             type: Object
         },
         'participants.$.email': {
-            type: String
+            type: String,
+            regEx: SimpleSchema.RegEx.Email,
         },
 
 });
