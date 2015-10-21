@@ -1,7 +1,7 @@
 <template name="pickdate">
     <div id="step-2">
         <h2 class="StepTitle">Picking dates</h2>
-        {{> quickForm id="dateForm" schema=Schemas.Meeting fields="date" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-6"}}
+        {{> quickForm id="dateForm" schema=Schemas.Meeting collection=Collections.MeetingDetails type="insert" fields="date" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-6"}}
 
         <!--<form class="form-horizontal form-label-left">
 
@@ -11,7 +11,6 @@
                 </label>
 
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    {{> quickForm id="dateForm" schema=Schemas.Meeting fields="date" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
                     &lt;!&ndash;<input type="text" id="datepicker" style="width:80%" class="form-control col-md-7 col-xs-12"
                            data-provide="datepicker" name="location"
                            value="">&ndash;&gt;
