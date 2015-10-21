@@ -1,0 +1,60 @@
+<head>
+    <title>Autoform-wizard example app</title>
+</head>
+
+<template name="layout">
+    <div class="main container">
+        <h1>Autoform-wizard example app</h1>
+
+        {{> yield}}
+    </div>
+</template>
+
+<template name="newOrder">
+    {{> afWizard id="newOrderWizard" collection="Orders" route="newOrder" stepsTemplate="steps" buttonClasses="ui submit button" clearOnDestroy=true}}
+</template>
+
+<template name="contactInformation">
+    {{#autoForm id=step.formId doc=step.data schema=step.schema}}
+        {{#each afFieldNames}}
+            {{> afQuickField name=this.name options=afOptionsFromSchema}}
+        {{/each}}
+        {{> afWizardButtons}}
+    {{/autoForm}}
+</template>
+
+<template name="paymentInformation">
+    {{> quickForm id=step.formId doc=step.data schema=step.schema}}
+</template>
+
+<template name="viewOrder">
+    <p>Thanks for your order {{contactInformation.name}}.</p>
+
+    <a href="/" class="ui button">Place another order</a>
+
+    <a href="{{pathFor route="editOrder" id=name}}" class="ui button">Edit order</a>
+</template>
+
+<template name="editOrder">
+    <p>Editing your order {{contactInformation.name}}.</p>
+
+    {{> afWizard id="editOrderWizard" collection="Orders" doc=this route="editOrder" stepsTemplate="steps" buttonClasses="ui submit button" clearOnDestroy=true persist=false}}
+    <!--{{> quickForm id="contact-information-form" doc=this schema=Schema.contactInformation}}-->
+</template>
+
+<template name="steps">
+    <div class="ui two steps">
+        {{#each wizard.steps}}
+            <div class="{{stepClass id}} step">
+                {{#if icon}}<i class="info icon"></i>{{/if}}
+                <div class="content">
+                    {{#if wizard.route}}
+                        <a href="{{pathForStep id}}" class="title">{{title}}</a>
+                    {{else}}
+                        <div class="title">{{title}}</div>
+                    {{/if}}
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</template>
