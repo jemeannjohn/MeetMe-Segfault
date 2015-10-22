@@ -6,3 +6,13 @@ Meteor.publish(null, function () {
         People.find()
     ];
 });
+Meteor.publish(null, function () {
+    return [
+        MeetingDetails.find()
+    ];
+});
+Meteor.publish(null, function () {
+    return [
+        Meeting.find()
+    ];
+});

@@ -1,9 +1,10 @@
+<!--
 <head>
     <title>Autoform-wizard example app</title>
 </head>
 
 <template name="layout">
-    <div class="main container">
+    <div class="wiz container">
         <h1>Autoform-wizard example app</h1>
 
         {{> yield}}
@@ -39,7 +40,7 @@
     <p>Editing your order {{contactInformation.name}}.</p>
 
     {{> afWizard id="editOrderWizard" collection="Orders" doc=this route="editOrder" stepsTemplate="steps" buttonClasses="ui submit button" clearOnDestroy=true persist=false}}
-    <!--{{> quickForm id="contact-information-form" doc=this schema=Schema.contactInformation}}-->
+    &lt;!&ndash;{{> quickForm id="contact-information-form" doc=this schema=Schema.contactInformation}}&ndash;&gt;
 </template>
 
 <template name="steps">
@@ -58,3 +59,4 @@
         {{/each}}
     </div>
 </template>
+-->

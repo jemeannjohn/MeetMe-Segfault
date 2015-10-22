@@ -14,7 +14,23 @@ Schemas.Person = new SimpleSchema({
     }
 });
 
-Schemas.myDate = new SimpleSchema({
+Meeting = new Meteor.Collection('meeting');
+Schema = {};
+
+Schema.Meeting = new SimpleSchema({
+    title: {
+        type: String,
+        index: 1,
+        unique: true
+    },
+    description: {
+        type: String,
+        index: 1,
+        max: 2000,
+        autoform: {
+            rows: 5
+        }
+    },
     date: {
         type: Date,
         autoform: {
@@ -23,22 +39,22 @@ Schemas.myDate = new SimpleSchema({
                 multidate: true,
                 autoclose: true}
         }
-    }
-
-});
-Schemas.Date = new SimpleSchema(
-{
-    typeTest: {
+    },
+    participants: {
+        type: Array,
+        optional: true
+    },
+    'participants.$': {
+        type: Object
+    },
+    'participants.$.email': {
         type: String,
-            optional: true,
-            autoform: {
-            afFieldInput: {
-                type: "bootstrap-datetimepicker"
-            }
-        }
+        regEx: SimpleSchema.RegEx.Email
     }
 
 });
+Meeting.attachSchema(Schema.Meeting);
+
 
 Schemas.Meeting = new SimpleSchema({
         title: {
@@ -72,7 +88,7 @@ Schemas.Meeting = new SimpleSchema({
         },
         'participants.$.email': {
             type: String,
-            regEx: SimpleSchema.RegEx.Email,
-        },
+            regEx: SimpleSchema.RegEx.Email
+        }
 
 });

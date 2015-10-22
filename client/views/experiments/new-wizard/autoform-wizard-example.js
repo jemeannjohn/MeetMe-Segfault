@@ -1,3 +1,4 @@
+/*
 Orders = new Meteor.Collection('orders');
 
 Schema = {};
@@ -126,3 +127,4 @@ Router.route('/order/:_id/edit/:step?', {
         return Orders.findOne(this.params._id);
     }
 });
+*/

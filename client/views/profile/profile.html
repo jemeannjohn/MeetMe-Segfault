@@ -60,7 +60,12 @@
                                         </li>
                                     </ul>
                                 </li>-->
-
+                                <li>
+                                    <a href="/schedule">Schedule</a>
+                                </li>
+                                <li>
+                                    <a href="/schedule">Upcoming Events</a>
+                                </li>
                             </ul>
                         </div>
 
@@ -77,6 +82,9 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 {{> loginButtons align = "right"}}
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+
                                 <!--<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"-->
                                    <!--aria-expanded="false">-->
                                     <!--<img src="https://app-images-production.s3.amazonaws.com/uploads/user/avatar/1568/identicon.png" alt="">Tharun-->
@@ -111,8 +119,7 @@
 
                                 </h2>
                                 <ul class="nav navbar-right panel_toolbox">
-                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                    </li>
+
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                            aria-expanded="false"><i class="fa fa-wrench"></i></a>
@@ -128,10 +135,17 @@
                                 </ul>
                                 <div class="clearfix"></div>
                             </div>
-                            <div class="x_content">
+                            <div class="x-content">
+                                <!-- some cosmtic defect TODO: Remove defect in last tab  -->
                                 <!-- Smart Wizard -->
 
 
+                                {{> afWizard id="newMeetingWizard" collection="Meeting" route="newMeeting" stepsTemplate="steps" buttonClasses="ui submit button" clearOnDestroy=true}}
+
+
+
+
+                                <!--
                                 <div id="wizard" class="form_wizard wizard_horizontal">
                                     <ul class="wizard_steps">
                                         <li>
@@ -178,9 +192,10 @@
                                     <div id="step-4">
                                         <h2 class="StepTitle">Free available timings</h2>
                                         <p> TODO: Get timings from calendar and display</p>
-                                        <!-- TODO: Gettings timings from calendar API for specific dates and displaying-->
+                                        &lt;!&ndash; TODO: Gettings timings from calendar API for specific dates and displaying&ndash;&gt;
                                     </div>
                                 </div>
+-->
                             </div>
                         </div>
                     </div>
