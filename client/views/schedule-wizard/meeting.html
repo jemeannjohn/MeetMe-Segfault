@@ -8,7 +8,19 @@
 </template>-->
 
 <template name="newMeeting">
+    <div class="x_title">
+
+        <h2>Schedule a meeting
+
+        </h2>
+        <ul class="nav navbar-right panel_toolbox">
+
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x-content">
     {{> afWizard id="newMeetingWizard" collection="Meeting" route="newMeeting" stepsTemplate="steps" buttonClasses="ui submit button" clearOnDestroy=true}}
+    </div>
 </template>
 
 <template name="titleInformation">
