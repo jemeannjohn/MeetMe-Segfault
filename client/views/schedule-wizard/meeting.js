@@ -2,8 +2,6 @@
  * Created by Tharun on 10/21/2015.
  */
 
-
-
 if (Meteor.isClient) {
     Meteor.startup(function () {
         AutoForm.setDefaultTemplate("semanticUI");
@@ -31,10 +29,43 @@ if (Meteor.isClient) {
         }
 
     });
+    function send_email(result)
+    {
+        console.log('Inside sending an email')
+        list = [];
+        to = Meeting.findOne({_id:result});
+        emailData = {}
+        emailData['title'] = to.title;
+        emailData['description'] = to.description;
+        emailData['date'] = to.date
+        console.log(to)
+        console.log(to.participants[0].email)
 
+        for (i=0; i< to.participants.length; i++)
+            list.push(to.participants[i].email)
+        //console.log('inside send email function');
+        console.log('list', list)
+        Meteor.call('sendEmail',
+            list,
+            "no-reply@meetme.com",
+            "MeetMe - New Meeting Request!",
+            "You have a new meeting request. Please find the details below!", emailData);
+
+    }
+    function meeting_alert()
+    {
+        if (confirm("Are you sure you want to schedule a meeting?") == true) {
+            console.log('You clicked ok')
+            return true
+        } else {
+            console.log('You clicked cancel')
+            return false
+        }
+    }
     AutoForm.addHooks(['newMeetingWizard', 'editMeetingWizard'], {
         onSuccess: function (formType, result) {
             console.log("SUCCESS:", result);
+            send_email(result)
             Router.go('viewMeeting', {_id: result});
         },
         onError: function (formType, error) {
