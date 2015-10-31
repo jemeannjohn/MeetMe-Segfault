@@ -3,4 +3,5 @@
  */
 Meteor.subscribe('questions');
 Meteor.subscribe('answers');
-Meteor.subscribe('usermeetings')
+Meteor.subscribe('usermeetings');
+Meteor.subscribe('timeslots');

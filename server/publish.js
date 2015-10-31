@@ -19,3 +19,7 @@ Meteor.publish('answers', function() {
 Meteor.publish('usermeetings', function() {
   return UserMeetings.find();
 });
+
+Meteor.publish('timeslots', function() {
+    return Timeslots.find();
+});
