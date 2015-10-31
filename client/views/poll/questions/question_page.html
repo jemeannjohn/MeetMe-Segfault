@@ -1,0 +1,15 @@
+<template name="questionPage">
+  {{> questionItem}}
+  <div class="row">
+    <div class="answers-list col-md-6">
+      {{#each answers}}
+        <div class="ct-answer {{getChartistColor @index}}">
+          {{> answerItem}}
+        </div>
+      {{/each}}
+    </div>
+    <div class="col-md-6">
+      <div class="ct-chart ct-perfect-fourth">{{ drawChart }}</div>
+    </div>
+  </div>
+</template>
