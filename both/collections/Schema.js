@@ -1,15 +1,17 @@
 /**
  * Created by Tharun on 10/18/2015.
  */
-
+Timeslots = new Meteor.Collection('timeslots');
 Meeting = new Meteor.Collection('meeting');
+UserMeetings = new Mongo.Collection('usermeetings')
+
 Schema = {};
 
 Schema.Meeting = new SimpleSchema({
+
     title: {
         type: String,
-        index: 1,
-        unique: true
+        index: 1
     },
     description: {
         type: String,
@@ -47,6 +49,19 @@ Schema.Meeting = new SimpleSchema({
     'participants.$.email': {
         type: String,
         regEx: SimpleSchema.RegEx.Email
+    },
+    finalized : {
+        type: Boolean
     }
 });
 Meeting.attachSchema(Schema.Meeting);
+
+Schema.UserMeetings = new SimpleSchema({
+    userid: {
+        type: String
+    },
+    meetingid: {
+        type: String
+    }
+});
+UserMeetings.attachSchema(Schema.UserMeetings)

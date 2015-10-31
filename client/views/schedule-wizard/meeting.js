@@ -26,7 +26,10 @@ if (Meteor.isClient) {
                 return 'completed';
             }
             return 'disabled';
+
         }
+
+
 
     });
     Template.viewMeeting.helpers({
@@ -86,13 +89,38 @@ if (Meteor.isClient) {
                 Meeting.remove({_id:result})
                 return false
             }
-            send_email(result)
+            /*Meeting.update(result, {
+            $set: {userid: "myuserid"}
+            },  {validate: false});*/
+            UserMeetings.insert({
+                userid: Meteor.userId(),
+                meetingid: result
+            });
+            send_email(result);
             Router.go('viewMeeting', {_id: result});
         },
         onError: function (formType, error) {
             console.log("ERROR:", error);
+        },
+        onSubmit: function(data, wizard) {
+          var self = this;
+          Meeting.insert(_.extend(wizard.mergedData(), data), function(err, id) {
+              //console.log(wizard.mergedData());
+              //wizard.mergedData().userid = "myuserid";
+              //this.done();
+              console.log(wizard.mergedData())
+            if (err) {
+              self.done();
+            } else {
+              Router.go('viewMeeting', {
+                _id: id
+              });
+            }
+
+          });
         }
     });
+
 }
 
 /*
