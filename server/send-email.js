@@ -17,23 +17,24 @@ Meteor.startup(function() {
 //    time: "9:30 AM - 10:30 AM "
 //};
 
-SSR.compileTemplate( 'htmlEmail', Assets.getText( 'email-template.html' ) );
+//SSR.compileTemplate( 'htmlEmail', Assets.getText( 'email-template.html' ) );
 Meteor.methods({
-    sendEmail: function (to, from, subject, text, emailData) {
+    sendEmail: function (options) {
         //check([to, from, subject, text], [String]);
         // console.log('mail url',process.env.MAIL_URL);
         //console.log('inside sendEMAIL');
         // Let other method calls from the same client start running,
         // without waiting for the email sending to complete.
         //this.unblock();
-        //console.log('sending an email');
-        Email.send({
-            to: to,
-            from: from,
-            subject: subject,
-            text: text,
-            html: SSR.render( 'htmlEmail', emailData )
-        });
+        console.log('sending an email');
+        //Email.send({
+        //    to: to,
+        //    from: from,
+        //    subject: subject,
+        //    text: text,
+        //    html: SSR.render( 'htmlEmail', emailData )
+        //});
+        Email.send(options)
     }
 });
 

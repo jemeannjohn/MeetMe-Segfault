@@ -34,26 +34,38 @@ if (Meteor.isClient) {
     })
     function send_email(result)
     {
-        console.log('Inside sending an email')
-        list = [];
-        to = Meeting.findOne({_id:result});
+        console.log('Inside sending an email');
+        meeting_details = Meeting.findOne({_id:result});
         emailData = {}
-        emailData['title'] = to.title;
-        emailData['description'] = to.description;
-        emailData['date'] = to.date
-        console.log(to)
-        console.log(to.participants[0].email)
+        emailData['title'] = meeting_details.title;
+        emailData['description'] = meeting_details.description;
+        emailData['url'] = 'http://www.google.com';
+        //emailData['meeting_id'] = result
+        console.log(meeting_details)
+        //console.log(to.participants[0].email)
+        console.log('Meteor', Meteor.absoluteUrl())
+        var options = {
+            from: "no-reply@meetme.com",
+            subject: "MeetMe - New Meeting Request!",
+        };
+        emailData['date'] = '';
+        for (i = 0; i<meeting_details.date.length; i++)
+            emailData['date'] += meeting_details.date[i] + ', '
+        emailData['date'] = emailData['date'].slice(0, -2);
 
-        for (i=0; i< to.participants.length; i++)
-            list.push(to.participants[i].email)
-        //console.log('inside send email function');
-        console.log('list', list)
-        Meteor.call('sendEmail',
-            list,
-            "no-reply@meetme.com",
-            "MeetMe - New Meeting Request!",
-            "You have a new meeting request. Please find the details below!", emailData);
-
+        for (i=0; i< meeting_details.participants.length; i++)
+        {
+            var email = meeting_details.participants[i].email;
+            console.log(email)
+            options['to'] = email
+            emailData['url'] = Meteor.absoluteUrl() + 'poll?' + 'meeting_id=' + result +'&email=' + email;
+            console.log(emailData['url'])
+            console.log('emailData:', emailData)
+            var html = Blaze.toHTMLWithData(Template.email_notification, emailData);
+            options['html'] = html;
+            console.log('calling sendEmail')
+            Meteor.call('sendEmail', options);
+        }
     }
     function meeting_alert()
     {
