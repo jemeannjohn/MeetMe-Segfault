@@ -42,6 +42,8 @@
 
                     <br/>
                     <br/>
+                    <br/>
+                    <br/>
 
                     <!-- sidebar menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
@@ -60,11 +62,11 @@
                                         </li>
                                     </ul>
                                 </li>-->
+                                <!--<li>
+                                    <a href="/newMeeting">Schedule</a>
+                                </li>-->
                                 <li>
-                                    <a href="/schedule">Schedule</a>
-                                </li>
-                                <li>
-                                    <a href="/schedule">Upcoming Events</a>
+                                    <a href="/upcomingEvents">Upcoming Events</a>
                                 </li>
                             </ul>
                         </div>
@@ -114,89 +116,14 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
-                            <div class="x_title">
-                                <h2>Schedule a meeting
-
-                                </h2>
-                                <ul class="nav navbar-right panel_toolbox">
-
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                           aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Settings 1</a>
-                                            </li>
-                                            <li><a href="#">Settings 2</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                    </li>
-                                </ul>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="x-content">
-                                <!-- some cosmtic defect TODO: Remove defect in last tab  -->
-                                <!-- Smart Wizard -->
 
 
-                                {{> afWizard id="newMeetingWizard" collection="Meeting" route="newMeeting" stepsTemplate="steps" buttonClasses="ui submit button" clearOnDestroy=true}}
+
+                    {{>yield}}
 
 
 
 
-                                <!--
-                                <div id="wizard" class="form_wizard wizard_horizontal">
-                                    <ul class="wizard_steps">
-                                        <li>
-                                            <a href="#step-1">
-                                                <span class="step_no">1</span>
-                                                        <span class="step_descr">
-                                                Step 1<br/>
-                                                <small>Meeting description</small>
-                                            </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#step-2">
-                                                <span class="step_no">2</span>
-                                                        <span class="step_descr">
-                                                Step 2<br/>
-                                                <small>Pick dates</small>
-                                            </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#step-3">
-                                                <span class="step_no">3</span>
-                                                        <span class="step_descr">
-                                                Step 3<br/>
-                                                <small>Add participants</small>
-                                            </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#step-4">
-                                                <span class="step_no">4</span>
-                                                        <span class="step_descr">
-                                                Step 4<br/>
-                                                <small>Free available timeslots</small>
-                                            </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    {{> form1}}
-                                    {{>pickdate}}
-                                    {{>addparticipants}}
-
-                                    <div id="step-4">
-                                        <h2 class="StepTitle">Free available timings</h2>
-                                        <p> TODO: Get timings from calendar and display</p>
-                                        &lt;!&ndash; TODO: Gettings timings from calendar API for specific dates and displaying&ndash;&gt;
-                                    </div>
-                                </div>
--->
-                            </div>
                         </div>
                     </div>
 

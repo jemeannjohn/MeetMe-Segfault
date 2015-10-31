@@ -1,0 +1,51 @@
+<template name="timeslotsInformation">
+    <div class="x-content">
+        {{#each date}}
+            <table class="ui celled collapsing table">
+                <thead>
+                <tr>
+                    <th colspan="13" style="text-align: center">{{prettifyDate this}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td width="5%"><b>AM</b></td>
+                    <td>12-1</td>
+                    <td>1-2</td>
+                    <td>2-3</td>
+                    <td>3-4</td>
+                    <td>4-5</td>
+                    <td>5-6</td>
+                    <td>
+                        <div class="big-box">
+                            <div class="small-top-left"><i class="small green checkmark icon"></i></div>
+                            <div class="small-top-right">6-7</div>
+                        </div>
+                    </td>
+                    <td>7-8</td>
+                    <td>8-9</td>
+                    <td>9-10</td>
+                    <td>10-11</td>
+                    <td>11-12</td>
+                </tr>
+                <tr>
+                    <td width="5%"><b>PM</b></td>
+                    <td>12-1</td>
+                    <td>1-2</td>
+                    <td>2-3</td>
+                    <td>3-4</td>
+                    <td>4-5</td>
+                    <td>5-6</td>
+                    <td>6-7</td>
+                    <td>7-8</td>
+                    <td>8-9</td>
+                    <td>9-10</td>
+                    <td>10-11</td>
+                    <td>11-12</td>
+                </tr>
+                </tbody>
+            </table>
+        {{/each}}
+
+    </div>
+</template>

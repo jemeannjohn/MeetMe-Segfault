@@ -26,8 +26,6 @@ ejson
 mrt:jquery-ui
 twbs:bootstrap
 aldeed:tabular
-useraccounts:semantic-ui
-useraccounts:core
 email
 meteorhacks:ssr
 aldeed:autoform
