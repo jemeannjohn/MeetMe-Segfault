@@ -1,19 +1,13 @@
 td:first-child {
     width: 5%;
+    padding:0px;
+}
+td{
+    padding:0px;
 }
 .big-box{
-    cursor: pointer;
     text-align: center;
 }
-.small-top-left{
+.small-top-left {
     display: inline-block;
-    text-align: center;
-
-}
-.small-top-right{
-    display: inline-block;
-    text-align: center;
-}
-.small-hidden-bottom{
-    text-align: center;
 }
