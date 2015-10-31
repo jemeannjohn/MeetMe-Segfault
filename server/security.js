@@ -25,3 +25,8 @@ UserMeetings.allow({
         return true;
     }
 });
+Timeslots.allow({
+    insert: function () {
+        return true;
+    }
+});
