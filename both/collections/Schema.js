@@ -8,8 +8,7 @@ Schema = {};
 Schema.Meeting = new SimpleSchema({
     title: {
         type: String,
-        index: 1,
-        unique: true
+        index: 1
     },
     description: {
         type: String,
