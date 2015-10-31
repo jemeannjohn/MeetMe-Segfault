@@ -8,8 +8,7 @@ Schema = {};
 Schema.Meeting = new SimpleSchema({
     title: {
         type: String,
-        index: 1,
-        unique: true
+        index: 1
     },
     description: {
         type: String,
@@ -47,6 +46,9 @@ Schema.Meeting = new SimpleSchema({
     'participants.$.email': {
         type: String,
         regEx: SimpleSchema.RegEx.Email
+    },
+    finalized : {
+        type: Boolean
     }
 });
 Meeting.attachSchema(Schema.Meeting);

@@ -29,6 +29,9 @@ if (Meteor.isClient) {
         }
 
     });
+    Template.viewMeeting.helpers({
+
+    })
     function send_email(result)
     {
         console.log('Inside sending an email')
@@ -65,6 +68,12 @@ if (Meteor.isClient) {
     AutoForm.addHooks(['newMeetingWizard', 'editMeetingWizard'], {
         onSuccess: function (formType, result) {
             console.log("SUCCESS:", result);
+            a = meeting_alert()
+            if (!a)
+            {
+                Meeting.remove({_id:result})
+                return false
+            }
             send_email(result)
             Router.go('viewMeeting', {_id: result});
         },

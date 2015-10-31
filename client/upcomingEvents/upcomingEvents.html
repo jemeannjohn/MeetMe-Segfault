@@ -1,7 +1,16 @@
 <template name = "upcomingEvents">
 
     <div style="" >
-        <br> <br> <br>
+        <br>
         <h2> Upcoming Events Details: </h2>
+        <ul>
+            {{#each upcoming}}
+                Event:
+                <div>title: {{title}}</div>
+                <div>description: {{description}}</div>
+                <div>date: {{date}}</div>
+                <div>participants: {{#each participants}}{{email}}{{/each}}</div>
+            {{/each}}
+        </ul>
     </div>
 </template>
