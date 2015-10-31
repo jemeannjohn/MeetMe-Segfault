@@ -15,3 +15,7 @@ Meteor.publish('questions', function() {
 Meteor.publish('answers', function() {
   return Answers.find();
 });
+
+Meteor.publish('usermeetings', function() {
+  return UserMeetings.find();
+});

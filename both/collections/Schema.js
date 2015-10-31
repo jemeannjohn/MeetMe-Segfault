@@ -3,9 +3,12 @@
  */
 
 Meeting = new Meteor.Collection('meeting');
+UserMeetings = new Mongo.Collection('usermeetings')
+
 Schema = {};
 
 Schema.Meeting = new SimpleSchema({
+
     title: {
         type: String,
         index: 1,
@@ -50,3 +53,13 @@ Schema.Meeting = new SimpleSchema({
     }
 });
 Meeting.attachSchema(Schema.Meeting);
+
+Schema.UserMeetings = new SimpleSchema({
+    userid: {
+        type: String
+    },
+    meetingid: {
+        type: String
+    }
+});
+UserMeetings.attachSchema(Schema.UserMeetings)
