@@ -1,7 +1,7 @@
 /**
  * Created by Tharun on 10/18/2015.
  */
-
+Timeslots = new Meteor.Collection('timeslots');
 Meeting = new Meteor.Collection('meeting');
 Schema = {};
 
