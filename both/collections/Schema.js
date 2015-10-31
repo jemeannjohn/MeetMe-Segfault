@@ -47,6 +47,9 @@ Schema.Meeting = new SimpleSchema({
     'participants.$.email': {
         type: String,
         regEx: SimpleSchema.RegEx.Email
+    },
+    finalized : {
+        type: Boolean
     }
 });
 Meeting.attachSchema(Schema.Meeting);
