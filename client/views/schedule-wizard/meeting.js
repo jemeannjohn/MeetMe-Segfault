@@ -29,6 +29,9 @@ if (Meteor.isClient) {
         }
 
     });
+    Template.viewMeeting.helpers({
+
+    })
     function send_email(result)
     {
         console.log('Inside sending an email')
