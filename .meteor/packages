@@ -16,7 +16,6 @@ standard-minifiers      # JS/CSS minifiers run for production mode
 es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
-accounts-ui
 accounts-password
 accounts-facebook
 meteorhacks:kadira
@@ -31,7 +30,6 @@ meteorhacks:ssr
 aldeed:autoform
 aldeed:collection2
 msavin:mongol
-insecure
 aldeed:delete-button
 rajit:bootstrap3-datepicker
 aldeed:autoform-bs-datepicker
@@ -40,7 +38,7 @@ mrt:moment-timezone
 semantic:ui-css
 fabienb4:autoform-semantic-ui
 kepler:autoform-wizard
-autopublish
 http
 mfpierre:chartist-js
 blaze
+ian:accounts-ui-bootstrap-3

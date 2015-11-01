@@ -23,3 +23,7 @@ Meteor.publish('usermeetings', function() {
 Meteor.publish('timeslots', function() {
     return Timeslots.find();
 });
+
+Meteor.publish('users', function() {
+    return Meteor.users.find();
+});
