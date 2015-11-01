@@ -7,8 +7,33 @@ if (Meteor.isClient) {
     Template.upcomingEvents.helpers({
         upcoming: function () {
             console.log("inside upcoming");
-            var x = Meeting.find({}).fetch();
+            console.log(new Date());
+            var x = Meeting.find({date : {$gte : new Date()}}, {sort: { date: 1 }}).fetch();
             console.log(x);
+            //return x;
+            var data = []
+            for (i = 0; i < x.length; i++) {
+                x[i]["id2"] = "#" + x[i]._id;
+
+
+            }
+
+            /*data = [{
+             'id1' : '#collapse1',
+             'id2' : 'collapse1',
+             'title': 'abc',
+             'description': 'xyz',
+             'email': 'abc@gb.com'
+
+             },
+             {
+             'id1' : '#collapse2',
+             'id2' : 'collapse2',
+             'title': 'abc2',
+             'description': 'xyz2',
+             'email': 'abc@gb.com'
+
+             }]*/
             return x;
             //var x = Meteor.users.find({_id: Meteor.userId()}).fetch();
             /*console.log(x);
