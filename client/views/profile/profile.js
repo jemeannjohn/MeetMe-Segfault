@@ -27,7 +27,6 @@ if (Meteor.isClient) {
 Template.profile.helpers({
     userImage :function() {
         try {
-            console.log(Meteor.user);
             if (Meteor.user().services.facebook) {
                 return "http://graph.facebook.com/" + Meteor.user().services.facebook.id + "/picture/?type=large";
             } else if (Meteor.user().services.google) {

@@ -44,11 +44,11 @@ if (Meteor.isClient) {
     AutoForm.addHooks(['newMeetingWizard', 'editMeetingWizard'], {
         onSuccess: function (formType, result) {
             console.log("SUCCESS:", result);
-            a = meeting_alert();
-            if (!a) {
-                Meeting.remove({_id: result});
-                return false;
-            }
+            //a = meeting_alert();
+            //if (!a) {
+            //    Meeting.remove({_id: result});
+            //    return false;
+            //}
             /*Meeting.update(result, {
              $set: {userid: "myuserid"}
              },  {validate: false});*/
@@ -73,9 +73,6 @@ if (Meteor.isClient) {
                     console.log("error onsubmit inserion");
                     self.done();
                 } else {
-                    Router.go('viewMeeting', {
-                        _id: id
-                    });
                     self.done();
                 }
             });
