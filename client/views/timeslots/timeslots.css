@@ -1,13 +1,16 @@
 td:first-child {
     width: 5%;
-    padding:0px;
+    padding: 0px;
 }
-td{
-    padding:0px;
+
+td {
+    padding: 0px;
 }
-.big-box{
+
+.big-box {
     text-align: center;
 }
+
 .small-top-left {
     display: inline-block;
 }

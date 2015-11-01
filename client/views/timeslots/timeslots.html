@@ -1,5 +1,6 @@
 <template name="timeslotsInformation">
     <div class="x-content">
+        <h4>Please pick the timeslots for your meeting.</h4>
         <input type="hidden" name="{{_id}}">
         {{#each date}}
             <table class="ui celled collapsing table timeslotsTable" align="center">
@@ -11,6 +12,7 @@
                 <tbody>
                 <tr class="am">
                     <td width="5%"><b>AM</b></td>
+                    <!--<td><input type="checkbox" value="AM" class="all"/><label>All</label></td>-->
                     <td><input type="checkbox" value="{{this}}" class="1"/><label>12-1</label></td>
                     <td><input type="checkbox" value="{{this}}" class="2"/><label>1-2</label></td>
                     <td><input type="checkbox" value="{{this}}" class="3"/><label>2-3</label></td>
@@ -26,6 +28,7 @@
                 </tr>
                 <tr class="pm">
                     <td width="5%"><b>PM</b></td>
+                    <!--<td><input type="checkbox" value="PM" class="all"/><label>All</label></td>-->
                     <td><input type="checkbox" value="{{this}}" class="13"/><label>12-1</label></td>
                     <td><input type="checkbox" value="{{this}}" class="14"/><label>1-2</label></td>
                     <td><input type="checkbox" value="{{this}}" class="15"/><label>2-3</label></td>
@@ -42,6 +45,12 @@
                 </tbody>
             </table>
         {{/each}}
+        <div class="ui negative message" hidden="true" id="errorMessageTimeslots">
+            <i class="close icon" id="closeError"></i>
+            <div class="header">
+                Please check atleast one time slot.
+            </div>
+            </div>
         <input type="button" value="Submit" id="timeSlotsSubmit">
     </div>
 </template>

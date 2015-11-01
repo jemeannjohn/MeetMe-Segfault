@@ -6,9 +6,9 @@ if (Meteor.isClient) {
     Meteor.startup(function () {
         AutoForm.setDefaultTemplate("semanticUI");
 
-        Template.afCheckbox_semanticUI.onRendered(function () {
-            $(this.firstNode).checkbox();
-        });
+        //Template.afCheckbox_semanticUI.onRendered(function () {
+        //    $(this.firstNode).checkbox();
+        //});
     });
 
     Template.registerHelper('Schema', function () {
@@ -26,52 +26,12 @@ if (Meteor.isClient) {
                 return 'completed';
             }
             return 'disabled';
-
         }
-
-
-
     });
-    Template.viewMeeting.helpers({
 
-    })
-    function send_email(result)
-    {
-        console.log('Inside sending an email');
-        meeting_details = Meeting.findOne({_id:result});
-        emailData = {}
-        emailData['title'] = meeting_details.title;
-        emailData['description'] = meeting_details.description;
-        emailData['url'] = 'http://www.google.com';
-        //emailData['meeting_id'] = result
-        console.log(meeting_details)
-        //console.log(to.participants[0].email)
-        console.log('Meteor', Meteor.absoluteUrl())
-        var options = {
-            from: "no-reply@meetme.com",
-            subject: "MeetMe - New Meeting Request!",
-        };
-        emailData['date'] = '';
-        for (i = 0; i<meeting_details.date.length; i++)
-            emailData['date'] += meeting_details.date[i] + ', '
-        emailData['date'] = emailData['date'].slice(0, -2);
+    Template.viewMeeting.helpers({})
 
-        for (i=0; i< meeting_details.participants.length; i++)
-        {
-            var email = meeting_details.participants[i].email;
-            console.log(email)
-            options['to'] = email
-            emailData['url'] = Meteor.absoluteUrl() + 'poll?' + 'meeting_id=' + result +'&email=' + email;
-            console.log(emailData['url'])
-            console.log('emailData:', emailData)
-            var html = Blaze.toHTMLWithData(Template.email_notification, emailData);
-            options['html'] = html;
-            console.log('calling sendEmail')
-            Meteor.call('sendEmail', options);
-        }
-    }
-    function meeting_alert()
-    {
+    function meeting_alert() {
         if (confirm("Are you sure you want to schedule a meeting?") == true) {
             console.log('You clicked ok')
             return true
@@ -80,55 +40,56 @@ if (Meteor.isClient) {
             return false
         }
     }
+
     AutoForm.addHooks(['newMeetingWizard', 'editMeetingWizard'], {
         onSuccess: function (formType, result) {
             console.log("SUCCESS:", result);
-            a = meeting_alert()
-            if (!a)
-            {
-                Meeting.remove({_id:result})
-                return false
+            a = meeting_alert();
+            if (!a) {
+                Meeting.remove({_id: result});
+                return false;
             }
             /*Meeting.update(result, {
-            $set: {userid: "myuserid"}
-            },  {validate: false});*/
+             $set: {userid: "myuserid"}
+             },  {validate: false});*/
             UserMeetings.insert({
                 userid: Meteor.userId(),
                 meetingid: result
             });
-            send_email(result);
-            Router.go('viewMeeting', {_id: result});
+            //send_email(result);
+            Router.go('timeslotsInformation', {_id: result});
         },
         onError: function (formType, error) {
             console.log("ERROR:", error);
         },
-        onSubmit: function(data, wizard) {
-          var self = this;
-          Meeting.insert(_.extend(wizard.mergedData(), data), function(err, id) {
-              //console.log(wizard.mergedData());
-              //wizard.mergedData().userid = "myuserid";
-              //this.done();
-              console.log(wizard.mergedData())
-            if (err) {
-              self.done();
-            } else {
-              Router.go('viewMeeting', {
-                _id: id
-              });
-            }
-
-          });
+        onSubmit: function (data, wizard) {
+            var self = this;
+            Meeting.insert(_.extend(wizard.mergedData(), data), function (err, id) {
+                //console.log(wizard.mergedData());
+                //wizard.mergedData().userid = "myuserid";
+                //this.done();
+                console.log("merged data" + wizard.mergedData())
+                if (err) {
+                    console.log("error onsubmit inserion");
+                    self.done();
+                } else {
+                    Router.go('viewMeeting', {
+                        _id: id
+                    });
+                    self.done();
+                }
+            });
         }
     });
 
 }
 
 /*
-Router.configure({
-    layoutTemplate: 'layout'
-});
+ Router.configure({
+ layoutTemplate: 'layout'
+ });
 
-Router.route('/', function () {
-    this.redirect('newMeeting');
-});
-*/
+ Router.route('/', function () {
+ this.redirect('newMeeting');
+ });
+ */

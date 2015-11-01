@@ -1,9 +1,49 @@
+function send_email(result)
+{
+    console.log('Inside sending an email');
+    meeting_details = Meeting.findOne({_id:result});
+    emailData = {}
+    emailData['title'] = meeting_details.title;
+    emailData['description'] = meeting_details.description;
+    emailData['url'] = 'http://www.google.com';
+    //emailData['meeting_id'] = result
+    console.log(meeting_details)
+    //console.log(to.participants[0].email)
+    console.log('Meteor', Meteor.absoluteUrl())
+    var options = {
+        from: "no-reply@meetme.com",
+        subject: "MeetMe - New Meeting Request!",
+    };
+    emailData['date'] = '';
+    for (i = 0; i<meeting_details.date.length; i++)
+        emailData['date'] += meeting_details.date[i] + ', '
+    emailData['date'] = emailData['date'].slice(0, -2);
+
+    for (i=0; i< meeting_details.participants.length; i++)
+    {
+        var email = meeting_details.participants[i].email;
+        console.log(email)
+        options['to'] = email
+        emailData['url'] = Meteor.absoluteUrl() + 'poll?' + 'meeting_id=' + result +'&email=' + email;
+        console.log(emailData['url'])
+        console.log('emailData:', emailData)
+        var html = Blaze.toHTMLWithData(Template.email_notification, emailData);
+        options['html'] = html;
+        console.log('calling sendEmail')
+        Meteor.call('sendEmail', options);
+    }
+}
 Template.timeslotsInformation.events({
     "click #timeSlotsSubmit": function (event, template) {
         var selected = template.findAll("input[type=checkbox]:checked");
-        var meetingId=template.find("input[type=hidden]").name;
-        var dateSlotPair = _.map(selected, function(item) {
-            var pair=new Array();
+        if (selected.length == 0) {
+            $("#errorMessageTimeslots").show();
+            return false;
+        }
+        $("#errorMessageTimeslots").hide();
+        var meetingId = template.find("input[type=hidden]").name;
+        var dateSlotPair = _.map(selected, function (item) {
+            var pair = new Array();
             pair.push({date: item.value});
             pair.push({slot: item.className});
             return pair;
@@ -12,6 +52,27 @@ Template.timeslotsInformation.events({
             meetingId: meetingId,
             dateSlotPair: dateSlotPair
         });
+        send_email(meetingId);
+        Router.go('viewMeeting', {_id: meetingId});
+    },
+    //"change .all": function (event, template) {
+    //    if( $(event.target).is(":checked") ) {
+    //        var amOrPm = $(event.target).attr('value');
+    //        var allCheckboxes = template.findAll("input[type=checkbox]");
+    //        console.log(allCheckboxes);
+    //        var allids = _.pluck(allCheckboxes, 'className');
+    //        alert(allids);
+    //        if (name == "AM") {
+    //            for(var i=0;i<allids.length;i++){
+    //                if(allCheckboxes[i].id<12){
+    //
+    //                }
+    //            }
+    //        }
+    //    }
+    //},
+    "click #closeError": function (event, template) {
+        $("#errorMessageTimeslots").hide();
     }
 });
 UI.registerHelper("prettifyDate", function (timestamp) {
