@@ -10,6 +10,15 @@ Meteor.startup(function() {
 
     process.env.MAIL_URL = 'smtp://' + encodeURIComponent(username) + ':' + encodeURIComponent(password) + '@' + encodeURIComponent(server) + ':' + port;
     //console.log('mail url',process.env.MAIL_URL);
+    console.log('Inside startup function on server!!!')
+    //FutureTasks.find().forEach(function(mail) {
+    //    if (mail.date < new Date()) {
+    //        sendMail(mail)
+    //    } else {
+    //        addTask(mail._id, mail);
+    //    }
+    //});
+    SyncedCron.start();
 });
 //var emailData = {
 //    topic: "SER-515 Project Meet",
@@ -36,6 +45,5 @@ Meteor.methods({
         //});
         Email.send(options)
     }
+
 });
-
-

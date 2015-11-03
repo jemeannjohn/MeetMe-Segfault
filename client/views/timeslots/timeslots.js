@@ -52,6 +52,7 @@ Template.timeslotsInformation.events({
             meetingId: meetingId,
             dateSlotPair: dateSlotPair
         });
+
         send_email(meetingId);
         Router.go('viewMeeting', {_id: meetingId});
     },
