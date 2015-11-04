@@ -9,11 +9,24 @@ if (Meteor.isClient) {
             console.log("inside upcoming");
             console.log(new Date());
             var x = Meeting.find({date : {$gte : new Date()}}, {sort: { date: 1 }}).fetch();
+            var y = UserMeetings.find({userid : Meteor.userId()}).fetch();
+
+            console.log(y);
             console.log(x);
             //return x;
-            var data = []
+            var data = [];
+            var flag = 0;
             for (i = 0; i < x.length; i++) {
-                x[i]["id2"] = "#" + x[i]._id;
+                flag = 0;
+                for (j = 0; j < y.length; j++) {
+                    if (x[i]._id == y[j].meetingid) {
+                        x[i]["id2"] = "#" + x[i]._id;
+                        flag = 1;
+                    }
+                }
+                if (flag == 0) {
+                    delete x[i];
+                }
 
 
             }
