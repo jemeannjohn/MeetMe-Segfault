@@ -3,7 +3,8 @@
  */
 Timeslots = new Meteor.Collection('timeslots');
 Meeting = new Meteor.Collection('meeting');
-UserMeetings = new Mongo.Collection('usermeetings')
+UserMeetings = new Mongo.Collection('usermeetings');
+Poll = new Mongo.Collection('poll');
 
 Schema = {};
 
@@ -61,4 +62,28 @@ Schema.UserMeetings = new SimpleSchema({
         type: String
     }
 });
-UserMeetings.attachSchema(Schema.UserMeetings)
+UserMeetings.attachSchema(Schema.UserMeetings);
+/*
+
+Schema.Poll = new SimpleSchema({
+    meetingid:{
+       type: String
+    },
+    participants: {
+        type: Array,
+        optional: true
+    },
+    'participants.$': {
+        type: Object
+    },
+    'participants.$.email': {
+        type: String,
+        regEx: SimpleSchema.RegEx.Email
+    },
+    'participants.$.status':{
+        type: String,
+        default: 'No'
+    }
+});
+Poll.attachSchema(Schema.Poll);
+*/
