@@ -63,7 +63,35 @@ Schema.UserMeetings = new SimpleSchema({
     }
 });
 UserMeetings.attachSchema(Schema.UserMeetings);
+
 /*
+Schema.dateSlotPair = new SimpleSchema({
+    date:{
+       type: String
+    },
+    slots:{
+        type:Array
+    },
+    'slots.$': {
+    type: Object
+    },
+    'slots.$.time': {
+    type: String
+    },
+    'slots.$.slot':{
+    type: String
+}
+});
+Schema.Timeslots = new SimpleSchema({
+   meetingId:{
+       type:String
+   },
+    dateSlotPair:{
+        type:Schema.dateSlotPair
+    }
+});
+Timeslots.attachSchema(Schema.dateSlotPair);
+*/
 
 Schema.Poll = new SimpleSchema({
     meetingid:{
@@ -81,9 +109,7 @@ Schema.Poll = new SimpleSchema({
         regEx: SimpleSchema.RegEx.Email
     },
     'participants.$.status':{
-        type: String,
-        default: 'No'
+        type: String
     }
 });
 Poll.attachSchema(Schema.Poll);
-*/

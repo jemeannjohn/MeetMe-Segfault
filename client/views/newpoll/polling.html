@@ -1,0 +1,69 @@
+<template name="pollpage">
+    <style>
+        .demo {
+            border:1px solid #C0C0C0;
+            border-collapse:collapse;
+            padding:5px;
+        }
+        .demo th {
+            border:1px solid #C0C0C0;
+            padding:5px;
+            background:#F0F0F0;
+        }
+        .demo td {
+            border:1px solid #C0C0C0;
+            padding:5px;
+        }
+    </style>
+    <table class="demo">
+        <thead>
+        <tr>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {{#each meeting}}
+            <td>&nbsp;{{FormatDate dateSlotPair.date}}</td>
+                {{#each meeting}}
+                {{#each dateSlotPair.slots}}
+                    <td> {{time}} <br/> </td>
+                {{/each}}
+            {{/each}}
+            {{/each}}
+
+        </tr>
+        <tr>
+            <td>&nbsp;Date 2</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        </tbody>
+    </table>
+    <table>
+        <tr>
+            <td></td>
+            <td width="600">
+                <table width="100%" style="border: 1px solid #eee;">
+                    <tr>
+                        <th style="text-align: left; padding: 10px; border-bottom: 1px solid #eee; border-right: 1px solid #eee;">
+                            Date
+                        </th>
+                        <td style="text-align: left; padding: 10px;border-bottom: 1px solid #eee;border-right: 1px solid #eee;">{{#each meeting}}{{dateSlotPair.date}} {{/each}}</td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left; padding: 10px; border-bottom: 1px solid #eee; border-right: 1px solid #eee;">
+                            Time
+                        </th>
+                        {{#each meeting}}
+                        {{#each dateSlotPair.slots}}
+                        <td style="text-align: left; padding: 10px; border-bottom: 1px solid #eee;border-right: 1px solid #eee;"> {{time}} <br/> </td>
+                        {{/each}}
+                        {{/each}}
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</template>

@@ -28,5 +28,5 @@ Meteor.publish('users', function() {
     return Meteor.users.find();
 });
 Meteor.publish('poll', function() {
-    return poll.find();
+    return Poll.find();
 });
