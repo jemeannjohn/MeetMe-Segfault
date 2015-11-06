@@ -27,12 +27,13 @@ Schema.Meeting = new SimpleSchema({
         autoform: {
             //patch for multidate array. Works okay. But datepicker raising
             // some problems.
-            //afFieldInput: {
-            //type: "bootstrap-datepicker",
-            //    datePickerOptions: {
-            //    multidate: true,
-            //    autoclose: true}
-            //}
+            /*afFieldInput: {
+            type: "bootstrap-datepicker",
+                datePickerOptions: {
+                multidate: true,
+                autoclose: true
+                }
+            }*/
             type: "bootstrap-datepicker",
             datePickerOptions: {
                 multidate: true,

@@ -24,19 +24,19 @@
 </template>
 
 <template name="titleInformation">
-    {{> quickForm id=step.formId doc=step.data schema=Schemas.Meeting fields="title" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-6"}}
+    {{> quickForm id=step.formId doc=step.data schema=Schema.Meeting fields="title" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-6"}}
 
 </template>
 <template name="descInformation">
-    {{> quickForm id=step.formId doc=step.data schema=Schemas.Meeting fields="description" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-6"}}
+    {{> quickForm id=step.formId doc=step.data schema=Schema.Meeting fields="description" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-6"}}
 
 </template>
 <template name="dateInformation">
-    {{> quickForm id=step.formId doc=step.data schema=Schemas.Meeting  fields="date" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-6"}}
+    {{> quickForm id=step.formId doc=step.data schema=Schema.Meeting  fields="date" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-6"}}
 </template>
 
 <template name="participantInformation">
-    {{> quickForm id=step.formId doc=step.data schema=step.schema schema=Schemas.Meeting fields="participants,participants.$.email" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-6"}}
+    {{> quickForm id=step.formId doc=step.data schema=step.schema schema=Schema.Meeting fields="participants,participants.$.email" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-6"}}
 
 </template>
 
@@ -63,7 +63,7 @@
                         </tr>
                         <tr>
                             <th style="text-align: left; padding: 10px; border-right: 1px solid #eee;">Participants</th>
-                            <td style="text-align: left; padding: 10px;">{{ #each participants}} {{email}} {{/each}}</td>
+                            <td style="text-align: left; padding: 10px;">{{#each participants}} {{email}} {{/each}}</td>
                         </tr>
                     </table>
                 </td>
