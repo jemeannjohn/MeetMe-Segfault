@@ -54,13 +54,14 @@ Template.timeslotsInformation.events({
         //var pair = {};
         var dateSlotPair = _.map(selected, function (item) {
 
-            pair.push({time: time[parseInt(item.className) - 1], slot: item.className});
+            pair.push({time: time[parseInt(item.className) - 1], slot: item.className, votes: 1});
             //pair.push({date: item.value,time: time[parseInt(item.className) - 1], slot: item.className});
             //pair.push({slot: item.className});
-            return {date:item.value,slots:pair};
+            return {date:item.value,slots:pair };
         });
         console.log(dateSlotPair[0]);
-        var timeslot = {dateSlotPair: dateSlotPair[0]};
+        var timeslot = new Array();
+        timeslot.push({dateSlotPair: dateSlotPair[0]});
         //dateSlotPair has three elements instead of one. All three are duplicates.
         Timeslots.insert({
             meetingId: meetingId,

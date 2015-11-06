@@ -7,3 +7,4 @@ Meteor.subscribe('usermeetings');
 Meteor.subscribe('timeslots');
 Meteor.subscribe('users');
 Meteor.subscribe('poll');
+Meteor.subscribe('voting');

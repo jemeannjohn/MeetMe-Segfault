@@ -1,18 +1,20 @@
 <template name="pollpage">
     <style>
         .polltable {
-            border:1px solid #C0C0C0;
-            border-collapse:collapse;
-            padding:5px;
+            border: 1px solid #C0C0C0;
+            border-collapse: collapse;
+            padding: 5px;
         }
+
         .polltable th {
-            border:1px solid #C0C0C0;
-            padding:5px;
-            background:#F0F0F0;
+            border: 1px solid #C0C0C0;
+            padding: 5px;
+            background: #F0F0F0;
         }
+
         .polltable td {
-            border:1px solid #C0C0C0;
-            padding:5px;
+            border: 1px solid #C0C0C0;
+            padding: 5px;
         }
     </style>
     <p> Choose preferred timings</p>
@@ -24,18 +26,23 @@
         <tbody>
         <tr>
             {{#each meeting}}
-            <td>&nbsp;{{FormatDate dateSlotPair.date}}</td>
-                {{#each meeting}}
-                {{#each dateSlotPair.slots}}
-                    <td> <input type="checkbox" class="{{slot}}"/><label>{{time}}</label> <br/> </td>
+                {{#each timeslots}}
+                    <td>&nbsp;{{FormatDate timeslots.dateSlotPair.date}}</td>
+                    {{#each meeting}}
+                        {{#each timeslots}}
+                            {{#each dateSlotPair.slots}}
+                                <td><input type="checkbox" class="{{slot}}"/><label>{{time}}</label> <br/></td>
+                            {{/each}}
+                            {{/each}}
+                    {{/each}}
                 {{/each}}
-            {{/each}}
             {{/each}}
         </tr>
         </tbody>
     </table>
     <div class="ui negative message" hidden="true" id="errorMessageTimeslots">
         <i class="close icon" id="closeError"></i>
+
         <div class="header">
             Please check atleast one time slot.
         </div>
@@ -57,10 +64,10 @@
                             Time
                         </th>
                         {{#each meeting}}
-                        {{#each dateSlotPair.slots}}
+        {{#each dateSlotPair.slots}}
                         <td style="text-align: left; padding: 10px; border-bottom: 1px solid #eee;border-right: 1px solid #eee;"> {{time}} <br/> </td>
                         {{/each}}
-                        {{/each}}
+    {{/each}}
                     </tr>
                 </table>
             </td>
