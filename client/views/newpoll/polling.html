@@ -19,7 +19,7 @@
     <table class="polltable">
         <thead>
         <tr>
-
+        Meeting ID: {{_id}}
         </tr>
         </thead>
         <tbody>
@@ -32,10 +32,16 @@
                 {{/each}}
             {{/each}}
             {{/each}}
-
         </tr>
         </tbody>
     </table>
+    <div class="ui negative message" hidden="true" id="errorMessageTimeslots">
+        <i class="close icon" id="closeError"></i>
+        <div class="header">
+            Please check atleast one time slot.
+        </div>
+    </div>
+    <input type="button" value="Submit" id="preferredtimeSlotsSubmit">
     <!--<table>
         <tr>
             <td></td>
