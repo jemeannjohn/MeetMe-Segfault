@@ -93,6 +93,7 @@ Schema.Timeslots = new SimpleSchema({
 });
 Timeslots.attachSchema(Schema.dateSlotPair);
 */
+/*
 
 Schema.Poll = new SimpleSchema({
     meetingid:{
@@ -114,3 +115,4 @@ Schema.Poll = new SimpleSchema({
     }
 });
 Poll.attachSchema(Schema.Poll);
+*/

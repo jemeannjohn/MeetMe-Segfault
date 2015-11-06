@@ -30,3 +30,6 @@ Meteor.publish('users', function() {
 Meteor.publish('poll', function() {
     return Poll.find();
 });
+Meteor.publish('freeslots', function() {
+    return Freeslots.find();
+});

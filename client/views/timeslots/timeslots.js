@@ -19,9 +19,11 @@ function send_email(result)
         emailData['date'] += meeting_details.date[i] + ', '
     emailData['date'] = emailData['date'].slice(0, -2);
 
+    participant_list = new Array();
     for (i=0; i< meeting_details.participants.length; i++)
     {
         var email = meeting_details.participants[i].email;
+        participant_list.push({email: email, status: "None"});
         console.log(email)
         options['to'] = email
         emailData['url'] = Meteor.absoluteUrl() + 'poll?' + 'meeting_id=' + result +'&email=' + email;
@@ -32,6 +34,7 @@ function send_email(result)
         console.log('calling sendEmail')
         Meteor.call('sendEmail', options);
     }
+    return participant_list;
 }
 Template.timeslotsInformation.events({
     "click #timeSlotsSubmit": function (event, template) {
@@ -63,8 +66,12 @@ Template.timeslotsInformation.events({
             meetingId: meetingId,
             timeslots: timeslot
         });
-
-        send_email(meetingId);
+        participants = send_email(meetingId);
+        Poll.insert({
+            meetingId: meetingId,
+            participants: participants
+        });
+        console.log(participants);
         Router.go('viewMeeting', {_id: meetingId});
     },
     //"change .all": function (event, template) {
