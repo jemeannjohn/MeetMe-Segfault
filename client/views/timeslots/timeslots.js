@@ -26,7 +26,9 @@ function send_email(result)
         participant_list.push({email: email, status: "None"});
         console.log(email)
         options['to'] = email
-        emailData['url'] = Meteor.absoluteUrl() + 'poll?' + 'meeting_id=' + result +'&email=' + email;
+        //emailData['url'] = Meteor.absoluteUrl() + 'poll?' + 'meeting_id='
+        // + result +'&email=' + email;
+        emailData['url'] = Meteor.absoluteUrl() + 'poll/' + result +'/' + email;
         console.log(emailData['url'])
         console.log('emailData:', emailData)
         var html = Blaze.toHTMLWithData(Template.email_notification, emailData);

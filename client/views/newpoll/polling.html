@@ -17,14 +17,27 @@
             padding: 5px;
         }
     </style>
+    {{#if hasNotVoted}}
     <p> Choose preferred timings</p>
+
     <table class="polltable">
         <thead>
         <tr>
+            Timings
+            <input type="hidden" id = meetingId name="{{meetingId}}">
         </tr>
         </thead>
         <tbody>
         <tr>
+            {{#each timeslots}}
+            <td>&nbsp;{{FormatDate dateSlotPair.date}}</td>
+            {{#each dateSlotPair.slots}}
+            <td><input type="checkbox"
+                       class="{{slot}}"/><label>{{time}}</label> <br/></td>
+            {{/each}}
+            {{/each}}
+        </tr>
+        <!--<tr>
             {{#each meeting}}
                 {{#each timeslots}}
                     <td>&nbsp;{{FormatDate timeslots.dateSlotPair.date}}</td>
@@ -37,7 +50,7 @@
                     {{/each}}
                 {{/each}}
             {{/each}}
-        </tr>
+        </tr>-->
         </tbody>
     </table>
     <div class="ui negative message" hidden="true" id="errorMessageTimeslots">
@@ -73,4 +86,7 @@
             </td>
         </tr>
     </table>-->
+    {{else}}
+    <p> Already voted</p>
+    {{/if}}
 </template>
