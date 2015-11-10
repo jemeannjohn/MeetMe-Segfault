@@ -33,3 +33,6 @@ Meteor.publish('poll', function() {
 Meteor.publish('voting', function() {
     return Voting.find();
 });
+Meteor.publish('guestdetails', function() {
+    return GuestDetails.find();
+});
