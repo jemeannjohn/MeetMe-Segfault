@@ -33,8 +33,8 @@ SyncedCron.add({
 
     name: '1',
     schedule: function (parser) {
-        //return parser.recur().on('08:00:00').time();
-        return parser.recur().every(1).minute();
+        return parser.recur().on('08:00:00').time();
+        //return parser.recur().every(1).minute();
     },
     job: function () {
         //var today = new Date();
