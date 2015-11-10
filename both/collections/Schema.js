@@ -5,6 +5,7 @@ Timeslots = new Meteor.Collection('timeslots');
 Meeting = new Meteor.Collection('meeting');
 UserMeetings = new Mongo.Collection('usermeetings');
 Poll = new Mongo.Collection('poll');
+GuestDetails = new Meteor.Collection('guestdetails');
 
 Schema = {};
 
@@ -64,6 +65,17 @@ Schema.UserMeetings = new SimpleSchema({
     }
 });
 UserMeetings.attachSchema(Schema.UserMeetings);
+
+Schema.GuestDetails = new SimpleSchema({
+    name: {
+        type: String
+    },
+    email: {
+        type: String,
+        regEx: SimpleSchema.RegEx.Email
+    }
+});
+GuestDetails.attachSchema(Schema.GuestDetails);
 
 /*
 Schema.dateSlotPair = new SimpleSchema({

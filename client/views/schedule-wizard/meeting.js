@@ -52,12 +52,19 @@ if (Meteor.isClient) {
             /*Meeting.update(result, {
              $set: {userid: "myuserid"}
              },  {validate: false});*/
-            UserMeetings.insert({
-                userid: Meteor.userId(),
-                meetingid: result
-            });
+
+            if(Meteor.user()) {
+                UserMeetings.insert({
+                    userid: Meteor.userId(),
+                    meetingid: result
+                });
+                Router.go('timeslotsInformation', {_id: result});
+            }
             //send_email(result);
-            Router.go('timeslotsInformation', {_id: result});
+            else {
+                Router.go('guestInformation', {_id: result});
+            }
+
         },
         onError: function (formType, error) {
             console.log("ERROR:", error);
