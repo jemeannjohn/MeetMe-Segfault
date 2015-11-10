@@ -1,3 +1,31 @@
+/*{
+  "_id": "PGrdK8Z5gGsrKKZCx",
+  "meetingId": "HuE8ERE79RpGCkePm",
+  "timeslots": [
+    {
+      "dateSlotPair": {
+        "date": "Thu Oct 22 2015 17:00:00 GMT-0700 (US Mountain Standard Time)",
+        "slots": [
+          {
+            "time": "9-10 AM",
+            "slot": "10"
+          },
+          {
+            "time": "1-2 PM",
+            "slot": "14"
+          },
+          {
+            "time": "2-3 PM",
+            "slot": "15"
+          },
+          {
+            "time": "4-5 PM",
+            "slot": "17"
+          }
+        ]
+      }
+    }]
+}*/
 {
   "kind": "calendar#events",
   "etag": "\"1445204637202000\"",

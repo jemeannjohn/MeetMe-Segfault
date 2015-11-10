@@ -85,12 +85,14 @@
                                 <!--<li>
                                     <a href="/newMeeting">Schedule</a>
                                 </li>-->
-                                <li>
-                                    <a href="/upcomingEvents">Upcoming Meetings</a>
-                                </li>
-                                <li>
-                                    <a href="/pastEvents">Past Meetings</a>
-                                </li>
+                                {{#if currentUser}}
+                                    <li>
+                                        <a href="/upcomingEvents">Upcoming Meetings</a>
+                                    </li>
+                                    <li>
+                                        <a href="/pastEvents">Past Meetings</a>
+                                    </li>
+                                {{/if}}
                             </ul>
                         </div>
 

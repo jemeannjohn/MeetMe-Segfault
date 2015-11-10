@@ -27,3 +27,9 @@ Meteor.publish('timeslots', function() {
 Meteor.publish('users', function() {
     return Meteor.users.find();
 });
+Meteor.publish('poll', function() {
+    return Poll.find();
+});
+Meteor.publish('voting', function() {
+    return Voting.find();
+});

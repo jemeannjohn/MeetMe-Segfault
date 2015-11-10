@@ -3,7 +3,8 @@
  */
 Timeslots = new Meteor.Collection('timeslots');
 Meeting = new Meteor.Collection('meeting');
-UserMeetings = new Mongo.Collection('usermeetings')
+UserMeetings = new Mongo.Collection('usermeetings');
+Poll = new Mongo.Collection('poll');
 
 Schema = {};
 
@@ -26,12 +27,13 @@ Schema.Meeting = new SimpleSchema({
         autoform: {
             //patch for multidate array. Works okay. But datepicker raising
             // some problems.
-            //afFieldInput: {
-            //type: "bootstrap-datepicker",
-            //    datePickerOptions: {
-            //    multidate: true,
-            //    autoclose: true}
-            //}
+            /*afFieldInput: {
+            type: "bootstrap-datepicker",
+                datePickerOptions: {
+                multidate: true,
+                autoclose: true
+                }
+            }*/
             type: "bootstrap-datepicker",
             datePickerOptions: {
                 multidate: true,
@@ -61,4 +63,56 @@ Schema.UserMeetings = new SimpleSchema({
         type: String
     }
 });
-UserMeetings.attachSchema(Schema.UserMeetings)
+UserMeetings.attachSchema(Schema.UserMeetings);
+
+/*
+Schema.dateSlotPair = new SimpleSchema({
+    date:{
+       type: String
+    },
+    slots:{
+        type:Array
+    },
+    'slots.$': {
+    type: Object
+    },
+    'slots.$.time': {
+    type: String
+    },
+    'slots.$.slot':{
+    type: String
+}
+});
+Schema.Timeslots = new SimpleSchema({
+   meetingId:{
+       type:String
+   },
+    dateSlotPair:{
+        type:Schema.dateSlotPair
+    }
+});
+Timeslots.attachSchema(Schema.dateSlotPair);
+*/
+/*
+
+Schema.Poll = new SimpleSchema({
+    meetingid:{
+       type: String
+    },
+    participants: {
+        type: Array,
+        optional: true
+    },
+    'participants.$': {
+        type: Object
+    },
+    'participants.$.email': {
+        type: String,
+        regEx: SimpleSchema.RegEx.Email
+    },
+    'participants.$.status':{
+        type: String
+    }
+});
+Poll.attachSchema(Schema.Poll);
+*/
