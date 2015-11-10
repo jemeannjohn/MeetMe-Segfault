@@ -43,7 +43,10 @@ Meteor.methods({
         //    text: text,
         //    html: SSR.render( 'htmlEmail', emailData )
         //});
+
         Email.send(options)
-    }
+    },
+
+
 
 });

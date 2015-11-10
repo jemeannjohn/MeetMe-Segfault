@@ -1,0 +1,28 @@
+<template name="meeting_reminder">
+    <table>
+        <tr>
+            <td></td>
+            <td width="600">
+                <table width="100%" style="border: 1px solid #eee;">
+                    <tr>
+                        <th style="text-align: left; padding: 10px; border-bottom: 1px solid #eee; border-right: 1px solid #eee;">Title</th>
+                        <td style="text-align: left; padding: 10px; border-bottom: 1px solid #eee;">{{title}}</td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left; padding: 10px; border-bottom: 1px solid #eee; border-right: 1px solid #eee;">Description</th>
+                        <td style="text-align: left; padding: 10px; border-bottom: 1px solid #eee;">{{description}}</td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left; padding: 10px; border-right: 1px solid #eee;">Date</th>
+                        <td style="text-align: left; padding: 10px;">{{date}}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <a href="{{url}}">Click here to respond to this Meeting Invitation</a>
+
+
+</template>
