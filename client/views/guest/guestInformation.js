@@ -4,9 +4,9 @@
 
 AutoForm.hooks({
     submitPostForm: {
-        onSuccess: function(operation, post) {
+        onSuccess: function(formType, result) {
             console.log("congrats success!")
-            Router.go("timeslotsInformation", {_id: "guest"});
+            Router.go("timeslotsInformation", {_id: result});
         }
     }
 });
