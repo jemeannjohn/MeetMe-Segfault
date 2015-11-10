@@ -33,26 +33,31 @@ SyncedCron.add({
 
     name: '1',
     schedule: function (parser) {
-        return parser.recur().on('08:00:00').time();
-        //return parser.recur().every(1).minute();
+        //return parser.recur().on('08:00:00').time();
+        return parser.recur().every(1).minute();
     },
     job: function () {
-        var today = new Date()
-        console.log('today' + today)
-        var month = today.getMonth() + 1
+        //var today = new Date();
+        var tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate()+1)
+        tomorrow = new Date (tomorrow)
+        console.log('tomorrow: ' + tomorrow)
+
+        var month = tomorrow.getMonth() + 1
         if (month < 11)
             month = '0' + month;
-        var day = today.getDate();
+        var day = tomorrow.getDate();
         if (day < 11)
             day = '0' + day;
-        var today = today.getFullYear() + '-' + month + '-' + day + "T00:00:00.000Z";
+        tomorrow = tomorrow.getFullYear() + '-' + month + '-' + day + "T00:00:00.000Z";
+        console.log('tomo string: '+tomorrow)
+        tomorrow = new Date (tomorrow)
+
         //console.log(today.getFullYear());
         //console.log(today.getDate());
         //console.log(today.getMonth());
-        console.log('today: ' + today);
 
-        tomorrow = new Date(today);
-        tomorrow.setDate(tomorrow.getDate()+1)
+        console.log('tomorrow: ' + tomorrow);
         //console.log('tomo: ' + tomorrow);
 
         console.log("Sending an email...using cron job for date: "+ tomorrow);
@@ -60,8 +65,9 @@ SyncedCron.add({
         //result = 'faeAhCdiMZtCSak4F';
         //emailData = {}
         var meeting_details = Meeting.find({date: tomorrow}).fetch();
+        console.log(meeting_details)
         var len = Meeting.find({date: tomorrow}).count();
-        //console.log('len:'+len);
+        console.log('No meeting for tomorrow, len:'+len);
         //window.alert(meeting_details)
         //console.log(meeting_details[3].participants[0].email);
         if (len)
