@@ -47,12 +47,14 @@ Template.timeslotsInformation.events({
         var selected = template.findAll("input[type=checkbox]:checked");
         var expiryDate = template.find("input[type=text]");
         console.log(expiryDate.value);
-        if (selected.length == 0) {
-            $("#errorMessageTimeslots").show();
-            return false;
-        }
+
         if (expiryDate.value === ""){
             $("#errorMessageExpiryDate").show();
+            return false;
+        }
+        $("#errorMessageExpiryDate").hide();
+        if (selected.length == 0) {
+            $("#errorMessageTimeslots").show();
             return false;
         }
         $("#errorMessageTimeslots").hide();
