@@ -64,14 +64,16 @@ Template.timeslotsInformation.events({
             "9-10 PM", "10-11 PM", "11-12 AM"];
 
         var pair = new Array();
-
+        var end_date = new Date(expiryDate.value);
+        console.log("End Date");
+        console.log(end_date);
         //var pair = {};
         var dateSlotPair = _.map(selected, function (item) {
 
             pair.push({time: time[parseInt(item.className) - 1], slot: item.className, votes: 1});
             //pair.push({date: item.value,time: time[parseInt(item.className) - 1], slot: item.className});
             //pair.push({slot: item.className});
-            return {date:item.value,expiry_date:expiryDate,slots:pair };
+            return {date:item.value,expiry_date:end_date,slots:pair };
         });
         console.log(dateSlotPair[0]);
         var timeslot = new Array();
