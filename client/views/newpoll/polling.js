@@ -10,7 +10,7 @@ Template.pollpage.helpers({
         //return Timeslots.find({"meetingId": "QTeT5vZpCKea7rxya"});
         console.log(meetingId);
         console.log(email);
-        console.log("Returned obj")
+        console.log("Returned obj");
         console.log(Timeslots.find({"meetingId": this.params.meetingId}));
         return Timeslots.find({"meetingId": this.params.meetingId});
         //return Timeslots.find({},{fields:{'dateSlotPair':1}});

@@ -33,7 +33,7 @@ msavin:mongol
 aldeed:delete-button
 rajit:bootstrap3-datepicker
 aldeed:autoform-bs-datepicker
-tsega:bootstrap3-datetimepicker@=3.1.3_3
+tsega:bootstrap3-datetimepicker
 mrt:moment-timezone
 semantic:ui-css
 fabienb4:autoform-semantic-ui

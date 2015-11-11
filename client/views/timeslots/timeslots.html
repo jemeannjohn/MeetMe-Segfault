@@ -2,6 +2,11 @@
     <div class="x-content">
         <h4>Please pick the timeslots for your meeting.</h4>
         <input type="hidden" name="{{_id}}">
+        <p> Pick when the meeting should be finalized</p>
+        <div class="input-group datetimepicker">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            <input class="set-due-date form-control" type="text"/>
+        </div>
         {{#each date}}
             <table class="ui celled collapsing table timeslotsTable" align="center">
                 <thead>
@@ -169,6 +174,12 @@
                 Please check atleast one time slot.
             </div>
             </div>
+        <div class="ui negative message" hidden="true" id="errorMessageExpiryDate">
+            <i class="close icon" id="closeError"></i>
+            <div class="header">
+                Please pick date to finalize meeting.
+            </div>
+        </div>
         <input type="button" value="Submit" id="timeSlotsSubmit">
     </div>
 </template>

@@ -1,3 +1,6 @@
+Template.timeslotsInformation.onRendered(function() {
+    this.$('.datetimepicker').datetimepicker();
+});
 function send_email(result)
 {
     console.log('Inside sending an email');
@@ -42,8 +45,14 @@ function send_email(result)
 Template.timeslotsInformation.events({
     "click #timeSlotsSubmit": function (event, template) {
         var selected = template.findAll("input[type=checkbox]:checked");
+        var expiryDate = template.find("input[type=text]");
+        console.log(expiryDate.value);
         if (selected.length == 0) {
             $("#errorMessageTimeslots").show();
+            return false;
+        }
+        if (expiryDate.value === ""){
+            $("#errorMessageExpiryDate").show();
             return false;
         }
         $("#errorMessageTimeslots").hide();
@@ -60,7 +69,7 @@ Template.timeslotsInformation.events({
             pair.push({time: time[parseInt(item.className) - 1], slot: item.className, votes: 1});
             //pair.push({date: item.value,time: time[parseInt(item.className) - 1], slot: item.className});
             //pair.push({slot: item.className});
-            return {date:item.value,slots:pair };
+            return {date:item.value,expiry_date:expiryDate,slots:pair };
         });
         console.log(dateSlotPair[0]);
         var timeslot = new Array();
