@@ -130,9 +130,8 @@
 
                         request.execute(function (resp) {
                             var events = resp.items;
-                            appendPre('Your Google Calendar events for the day:');
-
                             if (events.length > 0) {
+                                appendPre('Your Google Calendar events for the day:');
                                 for (i = 0; i < events.length; i++) {
                                     var event = events[i];
                                     var when = event.start.dateTime;
@@ -160,7 +159,7 @@
                                     appendPre(i + 1 + ". " + event.summary + ' (' + when + ')')
                                 }
                             } else {
-                                appendPre('No upcoming events found for the day.');
+                                appendPre('You have no events in your Google Calendar for the day!');
                             }
 
                         });
