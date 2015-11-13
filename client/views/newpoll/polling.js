@@ -22,7 +22,7 @@ Template.pollpage.helpers({
         Poll.find({meetingId: meetingId})
         .forEach(function (doc) {
                 doc.participants.forEach(function (participant) {
-                    if (participant.email === participant_email && participant.status === "Coming" ){
+                    if (participant.email === participant_email && (participant.status === "Coming" || participant.status === "Not Coming" )){
                         notVoted = false;
                     }
                 });
@@ -109,5 +109,23 @@ Template.pollpage.events({
     "click #closeError": function (event, template) {
         $("#errorMessageTimeslots").hide();
     },
-    
+    "click #cannotMakeItButton": function (event, template) {
+        var meetingId = template.find("input#meetingId").name;
+        var participant_email = Router.current().params.email;
+
+        Poll.find({meetingId: meetingId})
+            .forEach(function (doc) {
+                doc.participants.forEach(function (participant) {
+                    if (participant.email === participant_email){
+                        participant.status = "Not Coming"
+                    }
+                });
+                console.log("Remove Poll");
+                Poll.remove({_id:doc._id});
+                console.log("Saved Poll");
+                Poll.insert(doc);
+                console.log(doc);
+            });
+
+    }
 });
