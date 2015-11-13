@@ -108,5 +108,6 @@ Template.pollpage.events({
     },
     "click #closeError": function (event, template) {
         $("#errorMessageTimeslots").hide();
-    }
+    },
+    
 });
