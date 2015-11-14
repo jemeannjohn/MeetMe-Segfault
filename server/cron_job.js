@@ -31,7 +31,7 @@
 //
 SyncedCron.add({
 
-    name: '1',
+    name: 'Reminder_for_Event',
     schedule: function (parser) {
         return parser.recur().on('08:00:00').time();
         //return parser.recur().every(1).minute();
@@ -108,6 +108,29 @@ SyncedCron.add({
         }
         }
     }
+
+
+});
+
+
+SyncedCron.add({
+    name: 'Final_Email_Confirmation',
+    schedule: function (parser) {
+        //return parser.recur().on('08:00:00').time();
+        return parser.recur().every(2).minute();
+    },
+    job: function(){
+        var now = new Date();
+        var final_email_list = Timeslots.find({ $and : [{expiry_date : { $lte : now} }, {email_sent: "N"}]}).fetch();
+        console.log('Final list: ', final_email_list[0]);
+        var l = final_email_list.length;
+        if (l)
+        {
+            console.log('Non Zero');
+
+        }
+    }
+
 });
 /**
  * Created by Nitesh on 11/6/15.
