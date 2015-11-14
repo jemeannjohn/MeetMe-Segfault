@@ -81,6 +81,7 @@ Template.timeslotsInformation.events({
         //dateSlotPair has three elements instead of one. All three are duplicates.
         Timeslots.insert({
             meetingId: meetingId,
+            expiry_date: end_date,
             timeslots: timeslot
         });
         participants = send_email(meetingId);
