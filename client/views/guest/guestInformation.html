@@ -2,5 +2,6 @@
     <br>
     <h2> Enter your Details: </h2>
     <br>
+    <input type="hidden" name="{{_id}}" id="meetingIdForGuest">
     {{> quickForm id="guestInformation" collection="GuestDetails" schema=Schema.GuestDetails type="insert" fields="name,email" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-6" id="submitPostForm"}}
 </template>

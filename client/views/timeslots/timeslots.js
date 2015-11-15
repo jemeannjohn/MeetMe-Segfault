@@ -82,6 +82,7 @@ Template.timeslotsInformation.events({
         Timeslots.insert({
             meetingId: meetingId,
             expiry_date: end_date,
+            email_sent: false,
             timeslots: timeslot
         });
         participants = send_email(meetingId);

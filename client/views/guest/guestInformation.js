@@ -4,9 +4,14 @@
 
 AutoForm.hooks({
     submitPostForm: {
-        onSuccess: function(formType, result) {
-            console.log("congrats success!")
-            Router.go("timeslotsInformation", {_id: result});
+        onSuccess: function(formType, result, template) {
+            var meetingId = $('#meetingIdForGuest')[0].name;
+            //adding guest details to the usermeeting table
+            UserMeetings.insert({
+                userid: result,
+                meetingid: meetingId
+            });
+            Router.go("timeslotsInformation", {_id: meetingId});
         }
     }
 });
@@ -17,16 +22,16 @@ if (Meteor.isClient) {
         onSubmit: function () {
             console.log("inside on submit of guest");
         }
-    })*/
-    AutoForm.addHooks(['postInsert', 'postUpdate'], {
-        onSuccess: function(operation, result, template) {
-
-            Router.go("timeslotsInformation");
-        },
-        onSubmit: function(){
-            console.log("inside onsubmit");
-        }
-    });
+    //})*/
+    //AutoForm.addHooks(['postInsert', 'postUpdate'], {
+    //    onSuccess: function(operation, result, template) {
+    //
+    //        Router.go("timeslotsInformation");
+    //    },
+    //    onSubmit: function(){
+    //        console.log("inside onsubmit");
+    //    }
+    //});
 
 
     /*Meteor.startup(function () {
