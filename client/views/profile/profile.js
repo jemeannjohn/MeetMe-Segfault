@@ -8,21 +8,21 @@ if (Meteor.isClient) {
                 'https://www.googleapis.com/auth/calendar.readonly',
                 'https://www.googleapis.com/auth/userinfo.profile',
                 'https://www.googleapis.com/auth/userinfo.email']},
-        forceApprovalPrompt: {google: true},
-        extraSignupFields: [{
-            fieldName: 'name',
-            fieldLabel: 'Name',
-            inputType: 'text',
-            visible: true,
-            validate: function(value, errorFunction) {
-                if (!value) {
-                    errorFunction("Please write your name");
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        }]
+        forceApprovalPrompt: {google: true}
+        //extraSignupFields: [{
+        //    fieldName: 'name',
+        //    fieldLabel: 'Name',
+        //    inputType: 'text',
+        //    visible: true,
+        //    validate: function(value, errorFunction) {
+        //        if (!value) {
+        //            errorFunction("Please write your name");
+        //            return false;
+        //        } else {
+        //            return true;
+        //        }
+        //    }
+        //}]
     });
 }
 Template.profile.helpers({
