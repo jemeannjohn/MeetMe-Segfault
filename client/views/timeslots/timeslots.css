@@ -1,16 +1,16 @@
-td:first-child {
-    width: 5%;
-    padding: 0px;
+.timeslotsTable {
+    border: 1px solid #C0C0C0;
+    border-collapse: collapse;
+    padding: 5px;
 }
 
-td {
-    padding: 0px;
+.timeslotsTable th {
+    border: 1px solid #C0C0C0;
+    padding: 5px;
+    background: #F0F0F0;
 }
 
-.big-box {
-    text-align: center;
-}
-
-.small-top-left {
-    display: inline-block;
+.timeslotsTable td {
+    border: 1px solid #C0C0C0;
+    padding: 5px;
 }

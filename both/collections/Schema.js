@@ -38,7 +38,6 @@ Schema.Meeting = new SimpleSchema({
             }*/
             type: "bootstrap-datepicker",
             datePickerOptions: {
-                multidate: true,
                 autoclose: true
             }
         }
