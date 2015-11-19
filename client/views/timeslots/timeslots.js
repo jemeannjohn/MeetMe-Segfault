@@ -93,8 +93,11 @@ Template.timeslotsInformation.events({
         console.log(participants);
         Router.go('viewMeeting', {_id: meetingId});
     },
-    "click #closeError": function (event, template) {
+    "click #closeErrorTimeslots": function (event, template) {
         $("#errorMessageTimeslots").hide();
+    },
+    "click #closeErrorExpiry": function (event, template) {
+        $("#errorMessageExpiryDate").hide();
     }
 });
 UI.registerHelper("prettifyDate", function (timestamp) {

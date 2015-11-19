@@ -18,12 +18,11 @@
         }
     </style>
     {{#if hasNotVoted}}
-    <p> Choose preferred timings</p>
+    <h4>Pick one or more preferred timings</h4>
 
     <table class="polltable">
         <thead>
         <tr>
-            Timings
             <input type="hidden" id = meetingId name="{{meetingId}}">
         </tr>
         </thead>
@@ -88,6 +87,6 @@
         </tr>
     </table>-->
     {{else}}
-    <p> Already voted</p>
+    <h4> Your vote has been received!s</h4>
     {{/if}}
 </template>

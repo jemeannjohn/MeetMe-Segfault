@@ -10,7 +10,7 @@
         <h5>Pick a few time slots for your meeting.</h5>
         {{#each date}}
             <input type="hidden" name="{{this}}" id="dateElement">
-            <table class="ui celled collapsing table timeslotsTable" align="center">
+            <table class="timeslotsTable" align="center">
                 <thead>
                 <tr>
                     <th colspan="13" style="text-align: center">{{prettifyDate this}}</th>
@@ -151,8 +151,8 @@
                                             //finding timeslot checkbox element
                                             var pre = document.getElementsByClassName(String(k));
                                             for (var j = 0; j < pre.length; j++) {
-                                                //coloring all busy timeslots red
-                                                pre[j].parentNode.style.backgroundColor = '#FF3333';
+                                                //coloring all busy timeslots
+                                                pre[j].parentNode.style.backgroundColor = '#e0e1e2';
                                             }
                                         }
                                     }
@@ -194,14 +194,14 @@
             {{/if}}
         {{/each}}
         <div class="ui negative message" hidden="true" id="errorMessageTimeslots">
-            <i class="close icon" id="closeError"></i>
+            <i class="close icon" id="closeErrorTimeslots"></i>
 
             <div class="header">
                 Please check atleast one time slot.
             </div>
         </div>
         <div class="ui negative message" hidden="true" id="errorMessageExpiryDate">
-            <i class="close icon" id="closeError"></i>
+            <i class="close icon" id="closeErrorExpiry"></i>
 
             <div class="header">
                 Please pick date to finalize meeting.
