@@ -116,17 +116,76 @@ SyncedCron.add({
 SyncedCron.add({
     name: 'Final_Email_Confirmation',
     schedule: function (parser) {
-        //return parser.recur().on('08:00:00').time();
-        return parser.recur().every(2).minute();
+        return parser.recur().on('08:00:00').time();
+        //return parser.recur().every(2).minute();
     },
     job: function(){
         var now = new Date();
-        var final_email_list = Timeslots.find({ $and : [{expiry_date : { $lte : now} }, {email_sent: "N"}]}).fetch();
+        var final_email_list = Timeslots.find({ $and : [{expiry_date : { $lte : now} }, {email_sent: "false"}]}).fetch();
         console.log('Final list: ', final_email_list[0]);
         var l = final_email_list.length;
         if (l)
         {
-            console.log('Non Zero');
+            console.log('meeting id: ',final_email_list[0].meetingId )
+            for (i = 0; i<l; i++)
+            {
+                var mID = final_email_list[i].meetingID
+                var m_details = Meeting.findone({_id: mID});
+                var all_emails = Poll.find({meetingId : mID})
+                var participants = all_emails.participants;
+                var to = []
+                var reject = []
+                for (var j = 0; j < m_details[i].date.length; j++)
+                    meeting_date += m_details[i].date[j] + ', '
+                meeting_date = meeting_date.slice(0, -2);
+                var max_index = 0
+                var max_value = 1
+                for (j = 0; j<participant.length; j++)
+                {
+                    if(participant[j].status == "Coming" || participants[j].status == "None")
+                    {
+                        to.push(participant[j].email)
+                        console.log(participant[j].email)
+                    }
+                    else
+                    {
+                        reject.push(participant[j].email)
+                    }
+                }
+                // determining maximum votes
+                var all_slots = final_email_list.timeslots[0].dateSlotPair.slots;
+                max_value = all_slots[0].votes
+                for (var k = 1; k < all_slots.length; k++)
+                {
+                    if(all_slots[k].votes > max_value)
+                    {
+                        max_value = all_slots[k].votes
+                        max_index = k
+                    }
+                }
+                var time =  all_slots[max_index].time
+                var text = "Title: " +m_details.title + '\n' + 'Description: ' + m_details.description + '\n' + 'Date: ' + meeting_date + '\n' + 'Time: ' + time +'\n'
+
+                if (to.lenght == 0) // Meeting will be cancelled
+                {
+                    var text = 'Meeting has been cancelled since no one has is free during the proposed time slots. Please take a note of this!'
+                    var sub = 'MeetMe - Meeting cancelled'
+                    to = to.concat(reject)
+                }
+                else
+                {
+                    var text = 'Meeting has been finalized, Please find the details below'
+                    var sub = 'MeetMe - Meeting Scheduled'
+                }
+                var options = {
+                    to: to,
+                    from: "no-reply@meetme.com",
+                    subject: sub,
+                    text: text
+                };
+                console.log('calling sendEmail()')
+                Meteor.call('sendEmail', options);
+            }
 
         }
     }
