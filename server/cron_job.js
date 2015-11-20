@@ -116,44 +116,53 @@ SyncedCron.add({
 SyncedCron.add({
     name: 'Final_Email_Confirmation',
     schedule: function (parser) {
-        return parser.recur().on('08:00:00').time();
-        //return parser.recur().every(2).minute();
+        //return parser.recur().on('08:00:00').time();
+        return parser.recur().every(1).minute();
     },
     job: function(){
         var now = new Date();
-        var final_email_list = Timeslots.find({ $and : [{expiry_date : { $lte : now} }, {email_sent: "false"}]}).fetch();
-        console.log('Final list: ', final_email_list[0]);
+        var final_email_list = Timeslots.find({ $and : [{expiry_date : { $lte : now} }, {email_sent: false}]}).fetch();
+        //console.log('Final list: ', final_email_list[0]);
         var l = final_email_list.length;
+        console.log("length:"+ l);
         if (l)
         {
             console.log('meeting id: ',final_email_list[0].meetingId )
             for (i = 0; i<l; i++)
             {
-                var mID = final_email_list[i].meetingID
-                var m_details = Meeting.findone({_id: mID});
-                var all_emails = Poll.find({meetingId : mID})
+                var mID = final_email_list[i].meetingId
+                console.log('meeting id inside: '+ mID );
+                var m_details = Meeting.findOne({_id: mID});
+                console.log( "m_details:"+ m_details);
+                var all_emails = Poll.findOne({meetingId : mID})
+                console.log( "all_emails:"+ all_emails);
                 var participants = all_emails.participants;
                 var to = []
+                var meeting_date = ''
                 var reject = []
-                for (var j = 0; j < m_details[i].date.length; j++)
-                    meeting_date += m_details[i].date[j] + ', '
+                for (var j = 0; j < m_details.date.length; j++)
+                     meeting_date += m_details.date[j] + ', '
                 meeting_date = meeting_date.slice(0, -2);
-                var max_index = 0
-                var max_value = 1
-                for (j = 0; j<participant.length; j++)
+                console.log('meeting date: ', meeting_date);
+
+                for (j = 0; j<participants.length; j++)
                 {
-                    if(participant[j].status == "Coming" || participants[j].status == "None")
+                    if(participants[j].status == "Coming" || participants[j].status == "None")
                     {
-                        to.push(participant[j].email)
-                        console.log(participant[j].email)
+                        to.push(participants[j].email)
+                        console.log(participants[j].email)
                     }
                     else
                     {
-                        reject.push(participant[j].email)
+                        reject.push(participants[j].email)
                     }
                 }
                 // determining maximum votes
-                var all_slots = final_email_list.timeslots[0].dateSlotPair.slots;
+                console.log('done with emails')
+                console.log(final_email_list[i].timeslots[0]);
+                var all_slots = final_email_list[i].timeslots[0].dateSlotPair.slots;
+                var max_index = 0
+                var max_value = 1
                 max_value = all_slots[0].votes
                 for (var k = 1; k < all_slots.length; k++)
                 {
@@ -164,19 +173,32 @@ SyncedCron.add({
                     }
                 }
                 var time =  all_slots[max_index].time
-                var text = "Title: " +m_details.title + '\n' + 'Description: ' + m_details.description + '\n' + 'Date: ' + meeting_date + '\n' + 'Time: ' + time +'\n'
+                var text = "Title: " + m_details.title + '\n' + 'Description: ' + m_details.description + '\n' + 'Date: ' + meeting_date + '\n' + 'Time: ' + time +'\n'
 
-                if (to.lenght == 0) // Meeting will be cancelled
+                if (to.length == 0) // Meeting will be cancelled
                 {
-                    var text = 'Meeting has been cancelled since no one has is free during the proposed time slots. Please take a note of this!'
+                    var text = 'Following meeting has been cancelled since no one is free during the proposed time slots. Please take a note of this!' + '\n\n' + text
                     var sub = 'MeetMe - Meeting cancelled'
-                    to = to.concat(reject)
+                    to = reject
                 }
                 else
                 {
-                    var text = 'Meeting has been finalized, Please find the details below'
+                    var text = 'Meeting has been finalized, Please find the details below:' + '\n\n' + text
                     var sub = 'MeetMe - Meeting Scheduled'
+                    console.log('Inserting into confirmed table');
+                    MeetingConfirmed.insert(
+                        {
+                            meetingId: mID,
+                            date: meeting_date,
+                            time: time,
+                            title: m_details.title,
+                            description:  m_details.description,
+                            participants: to
+                        });
                 }
+                //console.log('to:'+ to);
+                Timeslots.update({meetingId: mID},{$set: {email_sent: true}})
+                console.log('text: '+text);
                 var options = {
                     to: to,
                     from: "no-reply@meetme.com",
