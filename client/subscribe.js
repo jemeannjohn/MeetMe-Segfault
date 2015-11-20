@@ -8,3 +8,4 @@ Meteor.subscribe('timeslots');
 Meteor.subscribe('users');
 Meteor.subscribe('poll');
 Meteor.subscribe('guestdetails');
+Meteor.subscribe('confirmed');

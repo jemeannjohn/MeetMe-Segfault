@@ -58,3 +58,14 @@ GuestDetails.allow({
         return true;
     }
 });
+MeetingConfirmed.allow({
+    insert: function () {
+        return true;
+    },
+    update: function () {
+        return true;
+    },
+    remove: function () {
+        return true;
+    }
+});

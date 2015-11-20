@@ -36,3 +36,6 @@ Meteor.publish('voting', function() {
 Meteor.publish('guestdetails', function() {
     return GuestDetails.find();
 });
+Meteor.publish('confirmed', function() {
+    return MeetingConfirmed.find();
+});
