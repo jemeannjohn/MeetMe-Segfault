@@ -117,7 +117,7 @@ SyncedCron.add({
     name: 'Final_Email_Confirmation',
     schedule: function (parser) {
         //return parser.recur().on('08:00:00').time();
-        return parser.recur().every(1).minute();
+        return parser.recur().every(30).minute();
     },
     job: function(){
         var now = new Date();
