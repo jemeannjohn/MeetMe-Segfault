@@ -10,19 +10,29 @@ if (Meteor.isClient) {
             console.log(new Date());
             var x = Meeting.find({date : {$gte : new Date()}}, {sort: { date: 1 }}).fetch();
             var y = UserMeetings.find({userid : Meteor.userId()}).fetch();
-            var z = MeetingConfirmed.find().fetch({date : {$gte : new Date()}});
+            var z = MeetingConfirmed.find().fetch();
 
             console.log(z);
             console.log(y);
             console.log(x);
+
             //return x;
             var data = [];
             var flag = 0;
             for (i = 0; i < z.length; i++) {
                 flag = 0;
+                var futureDate = ((new Date(z[i]["date"])) >= new Date());
+                console.log(futureDate);
                 for (j = 0; j < y.length; j++) {
-                    if (z[i].meetingId == y[j].meetingid) {
+                    if (z[i].meetingId == y[j].meetingid && futureDate) {
                         z[i]["id2"] = "#" + z[i]._id;
+                        z[i]["date"] = (z[i]["date"]).substring(0, 15);
+                        var d = new Date(z[i]["date"])
+                        console.log(d);
+                        d.setDate(d.getDate() + 1);
+                        console.log(d);
+                        var newDate = d.toDateString();
+                        z[i]["date"] = newDate;
                         flag = 1;
                     }
                 }
